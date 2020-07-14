@@ -17,10 +17,17 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String home() {
+	public String home() throws Exception {
 		logger.info("main");
 		
 		return "main";
+	}
+	
+	@RequestMapping(value = "/single", method = RequestMethod.GET)
+	public String single() throws Exception {
+		logger.info("single");
+		
+		return "single";
 	}
 	
 }
