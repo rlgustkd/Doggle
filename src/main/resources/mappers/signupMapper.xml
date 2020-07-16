@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="signupMapper">
+
+	<!-- 회원가입 -->
+	<insert id="signup">
+	    INSERT INTO member (   user_id
+	   					       , pwd
+	   					       , name
+	   					       , nickname
+	   					       , email )
+	                  VALUES(    
+	                 		    #{id}
+	                 		   , #{pwd}
+	                 		   , #{name}
+	                 		   , #{nickname}
+	                 		   , #{email}
+	                 		   )
+    </insert>
+     
+   <!-- 중복 아이디 검사 -->
+   <select id ="overlapcheck" resultType="com.doggle.vo.UsersVO">
+   	 SELECT id
+          FROM member
+         WHERE id = #{id}
+   </select>
+   
+   <select id = "idChk" resultType ="int">
+	select count(*) from membe
+	where user_id = #{id}
+   </select>
+   
+   
+</mapper>
