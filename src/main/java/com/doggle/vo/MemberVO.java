@@ -1,24 +1,15 @@
 package com.doggle.vo;
 
 public class MemberVO {
-	private String id;
+	private String user_id;
 	private String pwd;
-	private String name;
 	private String email;
 	private String nickname;
-	
-
-	public String getNickname() {
-		return nickname;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getPwd() {
 		return pwd;
@@ -26,18 +17,17 @@ public class MemberVO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 }

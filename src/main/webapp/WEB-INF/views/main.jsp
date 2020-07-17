@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -82,10 +83,17 @@
                     </li>
                   </ul>
                 </li>
-                
+                <c:set var="user" value="${user.user_id}"/>
                 <li><a href="#trainers-section" class="nav-link">Trainers</a></li>
                 <li><a href="#services-section" class="nav-link">Services</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                
+                <li><c:if test="${user != null}">
+                      	<a href="user/logout" class="nav-link">${user} + 로그아웃</a>
+                      </c:if>
+                      <c:if test="${user == null}">
+                      	<a href="user/user" class="nav-link">로그인</a>
+                      </c:if></li>
+                      
               </ul>
             </nav>
           </div>
