@@ -27,12 +27,6 @@ public class UserController {
 	MemberService memberService;
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
-	/*
-	 * @RequestMapping(value = "/login", method = RequestMethod.GET) public String
-	 * login() throws Exception { logger.info("login");
-	 * 
-	 * return "user/login"; }
-	 */
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() throws Exception {
