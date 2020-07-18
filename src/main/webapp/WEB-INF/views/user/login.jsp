@@ -1,118 +1,213 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Doggle</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/icomoon/style.css">
+<title>Doggle</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" id="bootstrap-css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/flaticon/font/flaticon.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/member.css">
 </head>
+<body>
+<!-- Start of Topbar -->
 
-	<!-- Start of Topbar -->
-	
-	<%@include file="topbar.jsp"%>
-    
-    <!-- End of Topbar -->
+<%@include file="topbar.jsp"%>
 
-    <!-- Start of main -->
-    <section class="site-section" id="contact-section">
-      <div class="container">
-        <div class="row justify-content-center" data-aos="fade-up">
-          <div class="col-lg-6 bg-primary">
-            <form action="#" class="p-5 contact-form">
-              
-              <h2 class="h4 mb-5 heading">Contact Form</h2> 
+<!-- End of Topbar -->
 
-              <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label for="lname">Last Name</label>
-                  <input type="text" id="lname" class="form-control">
-                </div>
-              </div>
+<!-- Start of main -->
+	<div class="container" style="padding-top: 100px;">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading" style="padding-bottom: 30px;">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body"  style="margin-bottom: 30px;">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="login" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="loginId" id="loginId" tabindex="1" class="form-control" placeholder="ID" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="loginPwd" id="loginPwd" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+								<form id="register-form" action="user" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="userid" id="userid" tabindex="1" class="form-control" placeholder="ID" value="">
+									</div>
+									<div class="form-group">
+										<input type="text" name="nickname" id="nickname" tabindex="2" class="form-control" placeholder="Nickname" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="3" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="4" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="5" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="6" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- End of main -->
 
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label for="email">Email</label> 
-                  <input type="email" id="email" class="form-control">
-                </div>
-              </div>
+<!-- Start of footer -->
 
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label for="subject">Subject</label> 
-                  <input type="subject" id="subject" class="form-control">
-                </div>
-              </div>
+<%@include file="../nav/footer.jsp"%>
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
-                </div>
-              </div>
+<!-- End of footer -->
+<!-- .site-wrap -->
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-dark btn-md text-white">
-                </div>
-              </div>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/isotope.pkgd.min.js"></script>
 
-  
-            </form>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    <!-- End of main -->
-    
-    <!-- Start of footer -->
-    
-	<%@include file="../nav/footer.jsp"%>
-  	
-  	<!-- End of footer --> 
-  <!-- .site-wrap -->
 
-  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/isotope.pkgd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
-  
-  <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#login-form-link').click(function(e) {
+			$("#login-form").delay(100).fadeIn(100);
+			$("#register-form").fadeOut(100);
+			$('#register-form-link').removeClass('active');
+			$(this).addClass('active');
+			e.preventDefault();
+		});
+		$('#register-form-link').click(function(e) {
+			$("#register-form").delay(100).fadeIn(100);
+			$("#login-form").fadeOut(100);
+			$('#login-form-link').removeClass('active');
+			$(this).addClass('active');
+			e.preventDefault();
+		});
+	});
+	$(document).ready(function() {
+		$("#register-submit").on("click", function() {
+			if ($("#userid").val() == "") {
+				alert("아이디를 입력해주세요.");
+				$("#userid").focus();
+				return false;
+			} else if ($("#nickname").val() == "") {
+				alert("사용할 이름을 입력해주세요.");
+				$("#nickname").focus();
+				return false;
+			} else if ($("#email").val() == "") {
+				alert("이메일을 입력해주세요.");
+				$("#email").focus();
+				return false;
+			} else if ($("#password").val() == "") {
+				alert("비밀번호를 입력해주세요.");
+				$("#password").focus();
+				return false;
+			} else if ($("#confirm-password").val() == "") {
+				alert("비밀번호를 입력해주세요.");
+				$("#confirm-password").focus();
+				return false;
+			} else if ($("#confirm-password").val() != $("#password").val()) {
+				alert("비밀번호가 동일하지 않습니다.");
+				$("#password").focus();
+				return false;
+			} else {
+				alert("회원가입 input 검사 완료");
+				$("#userid").val() = "";
+				$("#nickname").val() = "";
+				$("#email").val() = "";
+				$("#password").val() = "";
+				$("#confirm-password").val() = "";
+			}
+		});
+		$("#login-submit").on("click", function() {
+			if ($("#loginId").val() == "") {
+				alert("아이디를 입력해주세요.");
+				$("#loginId").focus();
+				return false;
+			} else if ($("#loginPwd").val() == "") {
+				alert("비밀번호를 입력해주세요.");
+				$("#loginPwd").focus();
+				return false;
+			} else {
+				$("#loginId").val() = "";
+				$("#loginPwd").val() = "";
+			}
+		});
+	})
+</script>
 
-  
-  </body>
+
+</body>
 </html>

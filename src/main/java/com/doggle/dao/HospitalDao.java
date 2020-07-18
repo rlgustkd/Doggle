@@ -1,5 +1,12 @@
 package com.doggle.dao;
 
-public interface HospitalDao {
+import java.util.List;
+import java.util.Map;
 
+import com.doggle.vo.HospitalVO;
+
+public interface HospitalDao {
+	public void saveImage(String saveFileName) throws Exception;
+	
+	public List<HospitalVO> getByteImage() throws Exception;
 }

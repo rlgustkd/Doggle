@@ -2,6 +2,8 @@ package com.doggle.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Hospital_BoardVO {
 	private int b_no;
 	private int p_no;
@@ -10,6 +12,10 @@ public class Hospital_BoardVO {
 	private String hb_content;
 	private Date date;
 	private String hb_photo;
+	private int recommend;
+	private int report;
+	private int use_flag;
+	
 	@Override
 	public String toString() {
 		return "Hospital_BoardVO [b_no=" + b_no + ", p_no=" + p_no + ", id=" + id + ", hb_title=" + hb_title
@@ -76,7 +82,5 @@ public class Hospital_BoardVO {
 	public void setUse_flag(int use_flag) {
 		this.use_flag = use_flag;
 	}
-	private int recommend;
-	private int report;
-	private int use_flag;
+	
 }

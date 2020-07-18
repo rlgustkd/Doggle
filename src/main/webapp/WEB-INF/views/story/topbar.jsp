@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -53,16 +54,24 @@
                     <li><a href="../info/petshop" class="nav-link">애견샵</a></li>
                   </ul>
                 </li>
-                
                 <li><a href="story" class="nav-link">Story</a></li>
-                <li><a href="../user/login" class="nav-link">Login</a></li>
+                
+                <c:set var="user" value="${user.user_id}"/>
+                <c:if test="${user != null}">
                 <li class="has-children">
-                  <a class="nav-link">My Page</a>
-                  <ul class="dropdown">
+                      	<a class="nav-link">My Page</a>
+                      	<ul class="dropdown">
                     <li><a href="../user/mypage" class="nav-link">마이페이지</a></li>
-                    <li><a href="../main" class="nav-link">Logout</a></li>
-                  </ul>
-                </li>
+                    <li><a href="../user/logout" class="nav-link">Logout</a></li>
+                    </ul>
+                    </li>
+                    </c:if>
+                      <c:if test="${user == null}">
+                      <li><a href="../user/user" class="nav-link">로그인</a></li>
+                    </c:if>
+                
+                
+                
               </ul>
             </nav>
           </div>
@@ -74,5 +83,6 @@
       </div>
       
     </header>
+    </div>
 </body>
 </html>

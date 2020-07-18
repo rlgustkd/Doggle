@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -55,18 +56,22 @@
                 </li>
                 
                 <li><a href="../story/story" class="nav-link">Story</a></li>
-                <li><a href="login" class="nav-link">Login</a></li>
+             <c:set var="user" value="${user.user_id}"/>
+                <c:if test="${user != null}">
                 <li class="has-children">
-                  <a class="nav-link">My Page</a>
-                  <ul class="dropdown">
+                      	<a class="nav-link">My Page</a>
+                      	<ul class="dropdown">
                     <li><a href="mypage" class="nav-link">마이페이지</a></li>
-                    <li><a href="../main" class="nav-link">Logout</a></li>
+                    <li><a href="logout" class="nav-link">Logout</a></li>
+                    </ul>
+                    </li>
+                    </c:if>
+                      <c:if test="${user == null}">
+                      <li><a href="user" class="nav-link">로그인</a></li>
+                    </c:if>
                   </ul>
-                </li>
-              </ul>
             </nav>
           </div>
-
 
           <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
 
@@ -74,5 +79,6 @@
       </div>
       
     </header>
+    </div>
 </body>
 </html>
