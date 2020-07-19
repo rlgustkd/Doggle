@@ -52,7 +52,7 @@
             <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 작성해주세요.">
           </div>
         <div class="form-group">
-            <label for="exampleFormControlInput1">작성자</label>
+            <label for="exampleFormControlInput1">작성자id</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" name="crea_id" placeholder="이름을 적어주세요.">
           </div>
           <div class="form-group">
