@@ -44,7 +44,64 @@
       	  </div>
      	</div>
       </div>
-    </section> 
+    </section>
+    
+   
+    
+    <table class="table table-hover">
+							<thead>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>날짜</th>
+									<th>조회수</th>
+									<th>추천수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>제목</td>
+									<td>writer</td>
+									<td>regdate</td>
+									<td>viewcnt</td>
+									<td>recommend</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>우리 고양이 참 이쁘죠?</td>
+									<td>김정수</td>
+									<td>20-07-19</td>
+									<td>325</td>
+									<td>265</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>제목</td>
+									<td>writer</td>
+									<td>regdate</td>
+									<td>viewcnt</td>
+									<td>recommend</td>
+								</tr>
+							</tbody>
+						</table>
+						<form action="./story/story.jsp" method="get" class="form-inline my-2 my-lg-0">
+          <input type="text" name="search" class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요.">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+        </form>
+						
+						<a class="btn btn-primary pull-right">글쓰기</a>
+						
+						<div class="text-center">
+							<ul class="pagination">
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+							</ul>
+						</div>
     <!-- End of main -->
     
     <!-- Start of footer -->
