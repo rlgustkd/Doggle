@@ -24,4 +24,26 @@ public class StoryController {
 		return "story/story";
 	}
 	
+	
+	@RequestMapping(value = "/gallery", method = RequestMethod.GET)
+	public String galget() throws Exception {
+		logger.info("gallery");
+		
+		return "story/gallery";
+	}
+	
+	@RequestMapping(value = "/galleryUpload", method = RequestMethod.GET)
+	public String galuploadget() throws Exception {
+		logger.info("galleryUploadGet");
+		
+		return "story/gallery_upload";
+	}
+	
+	@RequestMapping(value = "/galUploadComplete", method = RequestMethod.GET)
+	public String galuploadcompget() throws Exception {
+		logger.info("galleryUploadCompleteGet");
+		
+		return "story/gallery";
+	}
+	
 }
