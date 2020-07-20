@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +26,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">
+
 	 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">-
 	
     
 </head>
@@ -51,14 +52,86 @@
      	</div>
       </div>
     </section> 
-    
+    <!-- 여기가 메인 컨텐츠 -->
     <div class="site-wrap">
         <section class="site-section" id="gallery-section">
             <div class="container-fluid">
                 <div class="row justify-content-center" data-aos="fade-up">
                    <hr class="my-5" />
                     <a href="galleryUpload">작성하기</a>
+                    
+					<!-- photoboard의 row 불러오기 -->
+					<c:forEach items="${pbposts}" var="pbposts">
+						<div class="imglist">
+                        <a href="${pbposts.pb_photo}" data-fancybox="${pbposts.p_no}">
+                            <img src="https://source.unsplash.com/Lzx4J_Pb3sk/240x160" />
 
+                        </a>
+                        <a href="https://source.unsplash.com/AbNO2iejoXA/832x1200" data-fancybox="${pbposts.p_no}" data-type="image"></a>
+
+                        <a href="https://source.unsplash.com/CdK2eYhWfQ0/832x1200" data-fancybox="${pbposts.p_no}" data-type="image"></a>
+
+                        <div class="caption">
+                        	<h4>${pbposts.pb_title }</h4>
+                            <p>${pbposts.pb_content }</p>
+                            <p><br><i class="fa fa-eye" aria-hidden="true"></i> ${pbposts.viewcnt }  
+                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='far fa-comment-dots'></i> 3 </p>
+                            
+                            <hr>
+                            <div class="reply-list">
+                                <div style="display: flex;">
+                                    <div class="user_pic" style="float:left;">
+                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
+                                    </div>
+                                    <div class="reply_content"> <span class="rep_userid">동기현</span>
+                                        <p>
+                                            그들의 우는 커다란 할지니, 그와 뜨거운지라, 봄날의 있다.
+                                        </p>
+                                        <p class="replytime">2020-07-18</p>
+                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div style="display: flex;">
+                                    <div class="user_pic">
+                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
+                                    </div>
+                                    <div class="reply_content"> <span class="rep_userid">유승욱</span>
+                                        <p>
+                                            바로 불러 고행을 되려니와, 살 그들은 보배를 뿐이다. 가치를 생명을 그들의 원대하고, 힘차게 목숨이
+                                        </p>
+                                        <p class="replytime">2020-07-18</p>
+                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div style="display: flex;">
+                                    <div class="user_pic">
+                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
+                                    </div>
+                                    <div class="reply_content"> <span class="rep_userid">김정수</span>
+                                        <p>우리 같은 사막이다.</p>
+                                        <p class="replytime">2020-07-19</p>
+                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="add-reply">
+                                <div class="user_pic">
+                                    <img src="${pageContext.request.contextPath}/resources/images/profile.png">
+                                </div>
+                                <div class="input_rep" >
+                                    <input type="text" id="inputReply" value="" placeholder="Add a comment...">
+                                    <input type="button" value="게시" id="inputsubmit">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+					</c:forEach>	 
+					
                     <div class="imglist">
                         <a href="${pageContext.request.contextPath}/resources/images/dogger_trainer_2.jpg" data-fancybox="images_1">
                             <img src="https://source.unsplash.com/Lzx4J_Pb3sk/240x160" />
@@ -127,7 +200,7 @@
                         </div>
 
                     </div>
-                    
+                     
                     
                     
 

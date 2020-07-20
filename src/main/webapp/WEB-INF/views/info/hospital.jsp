@@ -87,11 +87,12 @@
 							<section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
 								<div class="container">
 									<div class="row justify-content-center" data-aos="fade-up"></div>
-									<!-- <form action="saveImage" enctype="multipart/form-data" method="post">
+									<form action="saveImage" enctype="multipart/form-data" method="post">
 										<input multiple="multiple" type="file" name="file" onchange="fileCheck(this)"
 											accept="image/gif, image/jpeg, image/png" /> <input type="submit"
-											value="이미지저장" />
-									</form> -->
+											value="이미지저장" /> 
+									</form>
+									<div id="image_container" style="display: inline;"></div>
 									<div data-aos="fade-up" data-aos-delay="200">
 										<div class="owl-carousel nonloop-block-13">
 											<c:forEach items="${hospitalinfo}" var="hospitalinfo">
@@ -526,6 +527,17 @@
 			if (!upload)
 				return false;
 		}
+		$('#image_container').empty();
+	      for (var image of event.target.files) {
+	          var reader = new FileReader();
+	          reader.onload = function(event) {
+	              
+	              var img = document.createElement("img");
+	              img.setAttribute("src", event.target.result); 
+	              img.setAttribute("style", 'width: 100px; height: 100px;');
+	              document.querySelector("div#image_container").appendChild(img);
+	               }; 
+	               reader.readAsDataURL(image); }
 	}
 </script>
 <script type="text/javascript">
@@ -539,7 +551,15 @@
 		}, 0);
 	});
 </script>
+<script>
+var html = '<div class="preview-image preview-show-' + num + '">' +
+'<div class="image-cancel" data-no="' + num + '">x</div>' +
+'<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>' +
+'<div class="tools-edit-image"><a href="javascript:void(0)" data-no="' + num + '" class="btn btn-light btn-edit-image">edit</a></div>' +
+'</div>';
 
+output.append(html);    
+</script>
 
 </body>
 </html>
