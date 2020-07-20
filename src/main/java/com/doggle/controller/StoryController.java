@@ -21,7 +21,25 @@ public class StoryController {
 	public String story() throws Exception {
 		logger.info("story");
 		
+		
+		//select 커리로 하는데  갑들을 화면에 넘기 기 
+		
+		
 		return "story/story";
 	}
+	
+	
+	
+	@RequestMapping("/detailStoryWriter")
+	public String writer() throws Exception {
+		
+		// insert sql문 구현된 함수 불러오기 
+	
+		return "story/detailStoryWriter";
+	}
+	
+	
+	
+	
 	
 }
