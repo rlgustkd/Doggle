@@ -20,4 +20,9 @@ public class PhotoboardDaoImpl implements PhotoboardDao {
 		return sqlSession.selectList("photoboardMapper.loadPosts");
 	}
 
+	@Override
+	public void uploadPost(PhotoboardVO pvo) throws Exception {
+		sqlSession.insert("photoboardMapper.uploadPost", pvo);
+	}
+
 }

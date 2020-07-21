@@ -14,8 +14,8 @@
 	
 	<form action="gallery" enctype="multipart/form-data" method="post">
 									<div>
-									제목: <input type="text">
-									내용: <input type="text">
+									제목: <input type="text" name="title">
+									내용: <input type="text" name="content">
 									</div>
 										<input multiple="multiple" type="file" name="file" onchange="fileCheck(this)"
 											accept="image/gif, image/jpeg, image/png" /> <input type="submit"

@@ -7,5 +7,6 @@ import com.doggle.vo.PhotoboardVO;
 public interface PhotoboardService {
 
 	public List<PhotoboardVO> loadPosts() throws Exception;
-
+	
+	public void uploadPost(PhotoboardVO pvo) throws Exception;
 }

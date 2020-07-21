@@ -22,4 +22,10 @@ public class PhotoboardServiceImpl implements PhotoboardService {
 		return dao.loadPosts();
 	}
 
+
+	@Override
+	public void uploadPost(PhotoboardVO pvo) throws Exception {
+		dao.uploadPost(pvo);
+	}
+
 }

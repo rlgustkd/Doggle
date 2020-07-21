@@ -8,4 +8,5 @@ public interface PhotoboardDao {
 
 	public List<PhotoboardVO> loadPosts() throws Exception;
 
+	public void uploadPost(PhotoboardVO pvo) throws Exception;
 }

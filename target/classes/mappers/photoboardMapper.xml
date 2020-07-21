@@ -10,6 +10,9 @@
     SELECT b_no, p_no, user_id, pb_title, pb_content, regdate, pb_photo, viewcnt, recommend, reportcnt, use_flag 
     FROM photoboard order by p_no desc
 </select>
-
+<insert id="uploadPost">
+	INSERT INTO photoboard (p_no, user_id, pb_title, pb_content, pb_photo)
+	VALUES (h_b_p_no.NEXTVAL, #{user_id}, #{pb_title}, #{pb_content}, #{pb_photo}) 
+</insert>
 
 </mapper>

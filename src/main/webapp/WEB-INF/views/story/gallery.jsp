@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +65,22 @@
 					<!-- photoboard의 row 불러오기 -->
 					<c:forEach items="${pbposts}" var="pbposts">
 						<div class="imglist">
+						
+						<c:set var="tel" value="${fn:split(pbposts.pb_photo, ',')}"/>
+						<c:forEach var="temp" items="${tel}"  varStatus="status">
+							<c:choose>
+							
+							<c:when test="${status.index == 0 }">
+							<a href="${pageContext.request.contextPath}/resources/images/${temp}" data-fancybox="${pbposts.p_no}" data-type="image">
+								<img src="${pageContext.request.contextPath}/resources/images/${temp}" style="width:240px; height: 240px;"/>
+							</a>	
+							</c:when>
+							<c:otherwise>
+							<a href="${pageContext.request.contextPath}/resources/images/${temp}" data-fancybox="${pbposts.p_no}" data-type="image"></a>
+							</c:otherwise>							
+							</c:choose>
+							</c:forEach>
+                        <!-- 
                         <a href="${pbposts.pb_photo}" data-fancybox="${pbposts.p_no}">
                             <img src="https://source.unsplash.com/Lzx4J_Pb3sk/240x160" />
 
@@ -70,7 +88,8 @@
                         <a href="https://source.unsplash.com/AbNO2iejoXA/832x1200" data-fancybox="${pbposts.p_no}" data-type="image"></a>
 
                         <a href="https://source.unsplash.com/CdK2eYhWfQ0/832x1200" data-fancybox="${pbposts.p_no}" data-type="image"></a>
-
+ 						 -->
+ 						
                         <div class="caption">
                         	<h4>${pbposts.pb_title }</h4>
                             <p>${pbposts.pb_content }</p>
@@ -238,6 +257,10 @@
   
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
+        $(document).ready(function() {
+
+
+        });
         
 
         // Initialise fancybox with custom settings
