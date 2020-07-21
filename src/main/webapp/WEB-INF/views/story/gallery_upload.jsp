@@ -5,148 +5,79 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-#upload {
-	opacity: 0;
-}
 
-#upload-label {
-	position: absolute;
-	top: 50%;
-	left: 1rem;
-	transform: translateY(-50%);
-}
 
-.image-area {
-	border: 2px dashed rgba(255, 255, 255, 0.7);
-	padding: 1rem;
-	position: relative;
-}
-
-.image-area::before {
-	content: 'Uploaded image result';
-	color: #fff;
-	font-weight: bold;
-	text-transform: uppercase;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 0.8rem;
-	z-index: 1;
-}
-
-.image-area img {
-	z-index: 2;
-	position: relative;
-}
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
-body {
-	min-height: 100vh;
-	background-color: #757f9a;
-	background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
-}
-</style>
 </head>
 <body>
 	<div class="container py-5">
-
-		<!-- For demo purpose -->
-		<header class="text-white text-center">
-			<h1 class="display-4">Bootstrap image upload</h1>
-			<p class="lead mb-0">Build a simple image upload button using
-				Bootstrap 4.</p>
-			<p class="mb-5 font-weight-light">
-				Snippet by <a href="https://bootstrapious.com" class="text-white">
-					<u>Bootstrapious</u>
-				</a>
-			</p>
-			<img
-				src="https://res.cloudinary.com/mhmd/image/upload/v1564991372/image_pxlho1.svg"
-				alt="" width="150" class="mb-4">
-		</header>
-
-
-		<div class="row py-4">
-			<div class="col-lg-6 mx-auto">
-
-				<!-- Upload image input-->
-				<div
-					class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-					<input id="upload" type="file" onchange="readURL(this);"
-						class="form-control border-0"> <label id="upload-label"
-						for="upload" class="font-weight-light text-muted">Choose
-						file</label>
-					<div class="input-group-append">
-						<label for="upload" class="btn btn-light m-0 rounded-pill px-4">
-							<i class="fa fa-cloud-upload mr-2 text-muted"></i><small
-							class="text-uppercase font-weight-bold text-muted">Choose
-								file</small>
-						</label>
-					</div>
-				</div>
-
-				<!-- Uploaded image area-->
-				<p class="font-italic text-white text-center">The image uploaded
-					will be rendered inside the box below.</p>
-				<div class="image-area mt-4">
-					<img id="imageResult" src="#" alt=""
-						class="img-fluid rounded shadow-sm mx-auto d-block">
-				</div>
-
-			</div>
-		</div>
+	
+	
+	<form action="gallery" enctype="multipart/form-data" method="post">
+									<div>
+									제목: <input type="text">
+									내용: <input type="text">
+									</div>
+										<input multiple="multiple" type="file" name="file" onchange="fileCheck(this)"
+											accept="image/gif, image/jpeg, image/png" /> <input type="submit"
+											value="작성" /> 
+	</form>
+									<div id="image_container" style="display: inline;"></div>
+									
 	</div>
 	
-	<a href="gallery">업로드 하기</a>
+	
+	
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/isotope.pkgd.min.js"></script>
 
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	
 	<script>
-		/*  ==========================================
-		 SHOW UPLOADED IMAGE
-		 * ========================================== */
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
+	//이미지 업로드시 이미지 파일만
+	function fileCheck(obj) {
+		pathpoint = obj.value.lastIndexOf('.');
+		filepoint = obj.value.substring(pathpoint + 1, obj.length);
+		filetype = filepoint.toLowerCase();
+		if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png'
+				|| filetype == 'jpeg' || filetype == 'bmp') {
 
-				reader.onload = function(e) {
-					$('#imageResult').attr('src', e.target.result);
-				};
-				reader.readAsDataURL(input.files[0]);
-			}
+			// 정상적인 이미지 확장자 파일일 경우 ...
+
+		} else {
+			alert('이미지 파일만 선택할 수 있습니다.');
+
+			parentObj = obj.parentNode
+			node = parentObj.replaceChild(obj.cloneNode(true), obj);
+
+			return false;
 		}
-
-		$(function() {
-			$('#upload').on('change', function() {
-				readURL(input);
-			});
-		});
-
-		/*  ==========================================
-		 SHOW UPLOADED IMAGE NAME
-		 * ========================================== */
-		var input = document.getElementById('upload');
-		var infoArea = document.getElementById('upload-label');
-
-		input.addEventListener('change', showFileName);
-		function showFileName(event) {
-			var input = event.srcElement;
-			var fileName = input.files[0].name;
-			infoArea.textContent = 'File name: ' + fileName;
+		if (filetype == 'bmp') {
+			upload = confirm('BMP 파일은 웹상에서 사용하기엔 적절한 이미지 포맷이 아닙니다.\n그래도 계속 하시겠습니까?');
+			if (!upload)
+				return false;
 		}
+		$('#image_container').empty();
+	      for (var image of event.target.files) {
+	          var reader = new FileReader();
+	          reader.onload = function(event) {
+	              
+	              var img = document.createElement("img");
+	              img.setAttribute("src", event.target.result); 
+	              img.setAttribute("style", 'width: 100px; height: 100px;');
+	              document.querySelector("div#image_container").appendChild(img);
+	               }; 
+	               reader.readAsDataURL(image); }
+	}
+
 	</script>
 </body>
 </html>
