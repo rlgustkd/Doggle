@@ -95,8 +95,8 @@ public class UserController {
 		
 		membervo.setUser_id(user_id);
 		membervo.setPwd(pwd);
-		MemberVO check = memberService.logincheck(membervo);
-
+		MemberVO check = memberService.logincheck(membervo);	//id와 비밀번호를 넣었을때 반환되는걸 check에 저장.
+																//id와 비밀번호가 맞을시, 그 id와 비밀번호를 그대로 VO에 실어서 옴
 		if (check == null) {
 			logger.info("id");
 			model.addAttribute("msg", "로그인 실패! id와 패스워드를 확인해 주세요.");
@@ -106,7 +106,7 @@ public class UserController {
 		} 
 		else {
 			logger.info("login success");
-			session.setAttribute("user", check);
+			session.setAttribute("user", check);	//세션에 user 라는 키로 check가 반환해오는 문자열을 저장.
 			logger.info("1");
 			model.addAttribute("msg", "로그인 성공!");
 			model.addAttribute("url","/main");

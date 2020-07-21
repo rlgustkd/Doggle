@@ -3,20 +3,20 @@ package com.doggle.vo;
 import java.sql.Date;
 
 public class FreeboardVO {
-	private int b_no;
-	private int p_no;
-	private String id;
-	private String fb_title;
+	private int b_no;	//게시판번호
+	private int p_no;	//글 번호
+	private String user_id;	
+	private String fb_title;	
 	private String fb_content;
-	private Date date;
+	private String regdate;
 	private String fb_photo;
-	private int view;
-	@Override
-	public String toString() {
-		return "FreeboardVO [b_no=" + b_no + ", p_no=" + p_no + ", id=" + id + ", fb_title=" + fb_title
-				+ ", fb_content=" + fb_content + ", date=" + date + ", fb_photo=" + fb_photo + ", view=" + view
-				+ ", recommend=" + recommend + ", report=" + report + ", use_flag=" + use_flag + "]";
-	}
+	private int viewcnt;	//조회수
+	private int recommend;	//추천수
+	private int reportcnt;	//신고 수
+	private int use_flag;	
+	private String thumbimg;	//섬네일 이미지
+	
+
 	public int getB_no() {
 		return b_no;
 	}
@@ -29,11 +29,11 @@ public class FreeboardVO {
 	public void setP_no(int p_no) {
 		this.p_no = p_no;
 	}
-	public String getId() {
-		return id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getFb_title() {
 		return fb_title;
@@ -47,11 +47,11 @@ public class FreeboardVO {
 	public void setFb_content(String fb_content) {
 		this.fb_content = fb_content;
 	}
-	public Date getDate() {
-		return date;
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	public String getFb_photo() {
 		return fb_photo;
@@ -59,11 +59,11 @@ public class FreeboardVO {
 	public void setFb_photo(String fb_photo) {
 		this.fb_photo = fb_photo;
 	}
-	public int getView() {
-		return view;
+	public int getViewcnt() {
+		return viewcnt;
 	}
-	public void setView(int view) {
-		this.view = view;
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
 	}
 	public int getRecommend() {
 		return recommend;
@@ -71,11 +71,11 @@ public class FreeboardVO {
 	public void setRecommend(int recommend) {
 		this.recommend = recommend;
 	}
-	public int getReport() {
-		return report;
+	public int getReportcnt() {
+		return reportcnt;
 	}
-	public void setReport(int report) {
-		this.report = report;
+	public void setReportcnt(int reportcnt) {
+		this.reportcnt = reportcnt;
 	}
 	public int getUse_flag() {
 		return use_flag;
@@ -83,7 +83,12 @@ public class FreeboardVO {
 	public void setUse_flag(int use_flag) {
 		this.use_flag = use_flag;
 	}
-	private int recommend;
-	private int report;
-	private int use_flag;
+	public String getThumbimg() {
+		return thumbimg;
+	}
+	public void setThumbimg(String thumbimg) {
+		this.thumbimg = thumbimg;
+	}
+	
+	
 }

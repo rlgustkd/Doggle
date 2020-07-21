@@ -4,5 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeboardMapper">
 
+<insert id="upload">
+insert into freeboard (b_no, p_no, user_id, fb_title, fb_content, regdate, fb_photo, viewcnt, recommend, reportcnt, use_flag, thumbimg)
+values (1, b_no_seq.nextval, 'abcd', #{fb_title}, #{fb_content}, sysdate, #{fb_photo}, 0, 0, 0, 0, #{thumbimg})
+</insert>
 
 </mapper>

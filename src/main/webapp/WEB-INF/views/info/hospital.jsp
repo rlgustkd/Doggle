@@ -27,25 +27,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-<style>
-.block-testimony-1 blockquote, .block__76208 .accordion-item .heading>a[aria-expanded="true"]:before,
-	.hover-1-wrap .hover-1:after {
-	background: #F4ECE1;
-}
 
-.block-testimony-1 blockquote::before {
-	border-top-color: #F4ECE1;
-}
-
-.paws>span, .paws:before, .paws:after {
-	color: #F4ECE1;
-}
-
-.block__76208 .accordion-item .heading>a[aria-expanded="true"]:before,
-	.block__76208 .accordion-item .heading>a:before {
-	border: 1px solid #F4ECE1;
-}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/info.css">
 </head>
 
 

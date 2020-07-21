@@ -37,5 +37,5 @@
     <context:component-scan base-package="com.doggle.service"></context:component-scan>
     <context:component-scan base-package="com.doggle.dao"></context:component-scan>
     <context:component-scan base-package="com.doggle.vo"></context:component-scan>
-    		
+    <context:component-scan base-package="com.doggle.utils"></context:component-scan>
 </beans>
