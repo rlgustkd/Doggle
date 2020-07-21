@@ -54,7 +54,7 @@ public class StoryController {
 	public String galget(Model model) throws Exception {
 		logger.info("gallery");
 		List<PhotoboardVO> pbposts = photoboardservice.loadPosts();
-		List<Photoboard_ReplyVO> pbrlist = photoboardreplyservice.getReplies();
+		//List<Photoboard_ReplyVO> pbrlist = photoboardreplyservice.getReplies();
 		
 		model.addAttribute("pbposts", pbposts);
 		return "story/gallery";
@@ -122,5 +122,12 @@ public class StoryController {
         }
         
 		return "redirect:gallery";
+	}
+	
+	@RequestMapping(value = "/gallery", method = RequestMethod.PUT)
+	public String galput() throws Exception {
+		logger.info("galleryPut");
+		
+		return "story/gallery_upload";
 	}
 }

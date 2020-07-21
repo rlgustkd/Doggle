@@ -31,11 +31,11 @@
 
 	 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">-
+	        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">
 	
     
 </head>
-
+<body>
 	<!-- Start of Topbar -->
 	
 	<%@include file="topbar.jsp"%>
@@ -55,23 +55,24 @@
       </div>
     </section> 
     <!-- 여기가 메인 컨텐츠 -->
-    <div class="site-wrap">
+    <a href="galleryUpload">작성하기</a>
         <section class="site-section" id="gallery-section">
-            <div class="container-fluid">
+
+            
                 <div class="row justify-content-center" data-aos="fade-up">
-                   <hr class="my-5" />
-                    <a href="galleryUpload">작성하기</a>
+
+                    
                     
 					<!-- photoboard의 row 불러오기 -->
 					<c:forEach items="${pbposts}" var="pbposts">
 						<div class="imglist">
 						
 						<c:set var="tel" value="${fn:split(pbposts.pb_photo, ',')}"/>
-						<c:forEach var="temp" items="${tel}"  varStatus="status">
+						<c:forEach var="temp" items="${tel}" varStatus="status">
 							<c:choose>
 							
 							<c:when test="${status.index == 0 }">
-							<a href="${pageContext.request.contextPath}/resources/images/${temp}" data-fancybox="${pbposts.p_no}" data-type="image">
+							<a href="${pageContext.request.contextPath}/resources/images/${temp}" name="thumbnail" data-fancybox="${pbposts.p_no}" data-type="image">
 								<img src="${pageContext.request.contextPath}/resources/images/${temp}" style="width:240px; height: 240px;"/>
 							</a>	
 							</c:when>
@@ -80,22 +81,21 @@
 							</c:otherwise>							
 							</c:choose>
 							</c:forEach>
-                        <!-- 
-                        <a href="${pbposts.pb_photo}" data-fancybox="${pbposts.p_no}">
-                            <img src="https://source.unsplash.com/Lzx4J_Pb3sk/240x160" />
-
-                        </a>
-                        <a href="https://source.unsplash.com/AbNO2iejoXA/832x1200" data-fancybox="${pbposts.p_no}" data-type="image"></a>
-
-                        <a href="https://source.unsplash.com/CdK2eYhWfQ0/832x1200" data-fancybox="${pbposts.p_no}" data-type="image"></a>
- 						 -->
  						
                         <div class="caption">
-                        	<h4>${pbposts.pb_title }</h4>
+                        <br>
+                        	<div class="user_pic">
+                                        <img src="${pageContext.request.contextPath}/resources/images/profile.png" id="profile">
+                                    </div>
+                                    <span class="rep_userid">${pbposts.user_id }</span><span style="float:right;">${pbposts.regdate}</span>
+                                    <div class="reply_content"> 
+                                    <br>
+                        	<p>${pbposts.pb_title }</p>
+                        	<br>                    	
                             <p>${pbposts.pb_content }</p>
                             <p><br><i class="fa fa-eye" aria-hidden="true"></i> ${pbposts.viewcnt }  
-                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='far fa-comment-dots'></i> 3 </p>
-                            
+                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='fa fa-comment'></i> 3 </p>
+                            </div>
                             <hr>
                             <div class="reply-list">
                                 <div style="display: flex;">
@@ -225,12 +225,10 @@
 
 
                 </div>
-            </div>
         </section>
 
 
 
-    </div>
     
     
     <!-- End of main -->
@@ -257,11 +255,30 @@
   
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
-        $(document).ready(function() {
-
+	/*
+        $('a[name=thumbnail]').click(function() {
+        	$.ajax({
+	            url : "gallery",                    // 전송 URL
+	            type : 'PUT',                // GET or POST 방식
+	            traditional : true,
+	            datatype: "json",
+	            data : {
+	                user_id : user_id       // 보내고자 하는 data 변수 설정
+	            },
+	            
+	            //Ajax 성공시 호출 
+	            success : function(msg){
+	    			$('#profile').attr('src', ${pageContext.request.contextPath} + "/resources/images/" + msg.pic);
+	            },
+	         
+	            //Ajax 실패시 호출
+	            error : function(jqXHR, textStatus, errorThrown){
+	                console.log("jqXHR : " +jqXHR +"textStatus : " + textStatus + "errorThrown : " + errorThrown);
+	            }
+	        });
 
         });
-        
+        */
 
         // Initialise fancybox with custom settings
         $('[data-fancybox]').fancybox({
