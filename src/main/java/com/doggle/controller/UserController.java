@@ -87,9 +87,6 @@ public class UserController {
 		HttpSession session = request.getSession();
 
 		MemberVO membervo = new MemberVO();
-		logger.info("loginput");
-		logger.info(request.getParameter("loginId"));
-		logger.info(request.getParameter("loginPwd"));
 		String user_id = request.getParameter("loginId");
 		String pwd = request.getParameter("loginPwd");
 		
@@ -98,19 +95,16 @@ public class UserController {
 		MemberVO check = memberService.logincheck(membervo);
 
 		if (check == null) {
-			logger.info("id");
 			model.addAttribute("msg", "로그인 실패! id와 패스워드를 확인해 주세요.");
 			model.addAttribute("url", "/user/user");
 			
 			return "redirect";
 		} 
 		else {
-			logger.info("login success");
 			session.setAttribute("user", check);
-			logger.info("1");
 			model.addAttribute("msg", "로그인 성공!");
 			model.addAttribute("url","/main");
-
+			//logger.info(check.getPic());
 			return "redirect";
 		}
 	}

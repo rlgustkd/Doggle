@@ -3,17 +3,20 @@ package com.doggle.vo;
 import java.sql.Date;
 
 public class PhotoboardVO {
-	int b_no;
-	int p_no;
-	String user_id;
-	String pb_title;
-	String pb_content;
-	Date regdate;
-	String pb_photo;
-	int viewcnt;
-	int recommend;
-	int reportcnt;
-	int use_flag;
+	private int b_no;
+	private int p_no;
+	private String user_id;
+	private String pb_title;
+	private String pb_content;
+	private Date regdate;
+	private String pb_photo;
+	private int viewcnt;
+	private int recommend;
+	private int reportcnt;
+	private int use_flag;
+	private String pic;
+	private String nickname;
+	
 	public int getB_no() {
 		return b_no;
 	}
@@ -80,11 +83,24 @@ public class PhotoboardVO {
 	public void setUse_flag(int use_flag) {
 		this.use_flag = use_flag;
 	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
 	@Override
 	public String toString() {
 		return "PhotoboardVO [b_no=" + b_no + ", p_no=" + p_no + ", user_id=" + user_id + ", pb_title=" + pb_title
 				+ ", pb_content=" + pb_content + ", regdate=" + regdate + ", pb_photo=" + pb_photo + ", viewcnt="
-				+ viewcnt + ", recommend=" + recommend + ", reportcnt=" + reportcnt + ", use_flag=" + use_flag + "]";
+				+ viewcnt + ", recommend=" + recommend + ", reportcnt=" + reportcnt + ", use_flag=" + use_flag + ", pic=" + pic + ", nickname=" + nickname + "]";
 	}
 	
 	

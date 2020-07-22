@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="photoboard_replyMapper">
+<!-- 게시물 업로드 -->
+
+<!-- 게시물 댓글 출력 -->
+<select id="loadReplies" resultType="com.doggle.vo.Photoboard_ReplyVO">
+SELECT PHOTOBOARD_REPLY.P_NO, PHOTOBOARD_REPLY.R_NO, PHOTOBOARD_REPLY.R_CONTENT, PHOTOBOARD_REPLY.USER_ID, REGDATE, MEMBER.PIC, MEMBER.NICKNAME FROM PHOTOBOARD_REPLY, MEMBER
+WHERE PHOTOBOARD_REPLY.USER_ID = MEMBER.USER_ID 
+AND PHOTOBOARD_REPLY.P_NO = #{P_NO} ORDER BY R_NO
+
+</select>
+
+<!-- 댓글 입력 -->
+<insert id="uploadPost">
+</insert>
+
+</mapper>

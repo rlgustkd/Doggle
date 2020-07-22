@@ -58,13 +58,11 @@
     <a href="galleryUpload">작성하기</a>
         <section class="site-section" id="gallery-section">
 
-            
                 <div class="row justify-content-center" data-aos="fade-up">
 
-                    
-                    
 					<!-- photoboard의 row 불러오기 -->
 					<c:forEach items="${pbposts}" var="pbposts">
+					
 						<div class="imglist">
 						
 						<c:set var="tel" value="${fn:split(pbposts.pb_photo, ',')}"/>
@@ -72,8 +70,8 @@
 							<c:choose>
 							
 							<c:when test="${status.index == 0 }">
-							<a href="${pageContext.request.contextPath}/resources/images/${temp}" name="thumbnail" data-fancybox="${pbposts.p_no}" data-type="image">
-								<img src="${pageContext.request.contextPath}/resources/images/${temp}" style="width:240px; height: 240px;"/>
+							<a href="${pageContext.request.contextPath}/resources/images/${temp}" data-fancybox="${pbposts.p_no}" data-type="image">
+								<img src="${pageContext.request.contextPath}/resources/images/${temp}" name="thumbnail" style="width:240px; height: 240px;"/>
 							</a>	
 							</c:when>
 							<c:otherwise>
@@ -85,65 +83,42 @@
                         <div class="caption">
                         <br>
                         	<div class="user_pic">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.png" id="profile">
+                                        <img src="${pageContext.request.contextPath}/resources/images/${pbposts.pic}" id="profile">
                                     </div>
-                                    <span class="rep_userid">${pbposts.user_id }</span><span style="float:right;">${pbposts.regdate}</span>
+                                    <span class="rep_userid">${pbposts.nickname }</span><span style="float:right;">${pbposts.regdate}</span>
                                     <div class="reply_content"> 
                                     <br>
                         	<p>${pbposts.pb_title }</p>
                         	<br>                    	
                             <p>${pbposts.pb_content }</p>
                             <p><br><i class="fa fa-eye" aria-hidden="true"></i> ${pbposts.viewcnt }  
-                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='fa fa-comment'></i> 3 </p>
+                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='fa fa-comment'></i> <span name="com">0</span> </p>
                             </div>
                             <hr>
                             <div class="reply-list">
-                                <div style="display: flex;">
-                                    <div class="user_pic" style="float:left;">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
-                                    </div>
-                                    <div class="reply_content"> <span class="rep_userid">동기현</span>
-                                        <p>
-                                            그들의 우는 커다란 할지니, 그와 뜨거운지라, 봄날의 있다.
-                                        </p>
-                                        <p class="replytime">2020-07-18</p>
-                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div style="display: flex;">
-                                    <div class="user_pic">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
-                                    </div>
-                                    <div class="reply_content"> <span class="rep_userid">유승욱</span>
-                                        <p>
-                                            바로 불러 고행을 되려니와, 살 그들은 보배를 뿐이다. 가치를 생명을 그들의 원대하고, 힘차게 목숨이
-                                        </p>
-                                        <p class="replytime">2020-07-18</p>
-                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div style="display: flex;">
-                                    <div class="user_pic">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
-                                    </div>
-                                    <div class="reply_content"> <span class="rep_userid">김정수</span>
-                                        <p>우리 같은 사막이다.</p>
-                                        <p class="replytime">2020-07-19</p>
-                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
-                                    </div>
-                                </div>
-                                <hr>
+                            
                             </div>
-                            <div class="add-reply">
-                                <div class="user_pic">
-                                    <img src="${pageContext.request.contextPath}/resources/images/profile.png">
+                            <c:set var="user" value="${sessionScope.user}"/>
+                             <c:if test="${user != null }">
+                             	<div class="user_pic">
+                                   <img src="${pageContext.request.contextPath}/resources/images/${sessionScope.user.pic}">
                                 </div>
                                 <div class="input_rep" >
                                     <input type="text" id="inputReply" value="" placeholder="Add a comment...">
                                     <input type="button" value="게시" id="inputsubmit">
                                 </div>
+                    		</c:if>
+                     		 <c:if test="${user == null}">
+                      				<div class="user_pic">
+                                   <img src="${pageContext.request.contextPath}/resources/images/profile.png">
+                                </div>
+                                <div class="input_rep" >
+                                    <input type="text" id="inputReply" value="" placeholder="댓글을 등록하려면 로그인하세요.." onfocus=this.blur(); readonly>
+                                    
+                                </div>
+                    		</c:if>
+                            <div class="add-reply">
+                                
 
                             </div>
                         </div>
@@ -201,14 +176,14 @@
                                     <div class="reply_content"> <span class="rep_userid">김정수</span>
                                         <p>우리 같은 사막이다.</p>
                                         <p class="replytime">2020-07-19</p>
-                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
+                                        <p class="replytime model"><a href="#">수정</a> / <a href="#">삭제</a></p>
                                     </div>
                                 </div>
                                 <hr>
                             </div>
                             <div class="add-reply">
                                 <div class="user_pic">
-                                    <img src="${pageContext.request.contextPath}/resources/images/profile.png">
+                                    <img src="${pageContext.request.contextPath}/resources/images/jjangahhh.jpg">
                                 </div>
                                 <div class="input_rep" >
                                     <input type="text" id="inputReply" value="" placeholder="Add a comment...">
@@ -255,21 +230,34 @@
   
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
-	/*
-        $('a[name=thumbnail]').click(function() {
+	
+
+
+		
+        $('img[name=thumbnail]').click(function() {
+        	
+        	var p_no = $(this).parent().attr("data-fancybox");
+             	
         	$.ajax({
 	            url : "gallery",                    // 전송 URL
 	            type : 'PUT',                // GET or POST 방식
 	            traditional : true,
-	            datatype: "json",
+	            dataType: 'json',
 	            data : {
-	                user_id : user_id       // 보내고자 하는 data 변수 설정
+	                p_no : p_no       // 보내고자 하는 data 변수 설정
 	            },
 	            
 	            //Ajax 성공시 호출 
 	            success : function(msg){
-	    			$('#profile').attr('src', ${pageContext.request.contextPath} + "/resources/images/" + msg.pic);
-	            },
+		            $('span[name=com]').text(msg.length);
+	            	$('.reply-list').empty();
+		            for(var i=0; i < msg.length; i++) {
+						var html = "<div style='display: flex;'><div class='user_pic' style='float:left;'><img src=" 
+						+ "${pageContext.request.contextPath}/resources/images/" + msg[i].pic + "></div><div class='reply_content'><span class='rep_userid'>" + msg[i].nickname + "</span><p>" + msg[i].r_content + "</p><p class='replytime'>" + setNumber(msg[i].regdate) + "</p><p class='replytime model'><a href='#'>수정</a> <a href='#'>삭제</a></p></div></div><hr>";
+						$(".reply-list").append(html);
+						
+				    }
+		        },
 	         
 	            //Ajax 실패시 호출
 	            error : function(jqXHR, textStatus, errorThrown){
@@ -278,8 +266,20 @@
 	        });
 
         });
-        */
-
+        
+        function setNumber(date) {
+        	var dt = new Date();
+          	 
+            var recentYear = dt.getFullYear();
+            var recentMonth = dt.getMonth() + 1;
+            var recentDay = dt.getDate();
+         
+            if(recentMonth < 10) recentMonth = "0" + recentMonth;
+            if(recentDay < 10) recentDay = "0" + recentDay;
+         
+            return result = recentYear + "-" + recentMonth + "-" + recentDay;
+        }
+		
         // Initialise fancybox with custom settings
         $('[data-fancybox]').fancybox({
             preventCaptionOverlap: false,

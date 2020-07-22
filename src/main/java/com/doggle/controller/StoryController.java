@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -21,13 +23,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.doggle.service.HospitalService;
 import com.doggle.service.PhotoboardService;
+import com.doggle.service.Photoboard_ReplyService;
 import com.doggle.vo.MemberVO;
 import com.doggle.vo.PhotoboardVO;
+import com.doggle.vo.Photoboard_ReplyVO;
+
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping(value = "/story/*")
@@ -35,13 +42,17 @@ public class StoryController {
 	
 	@Inject
 	PhotoboardService photoboardservice;
+	@Inject
+	Photoboard_ReplyService photoboardreplyservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoryController.class);
 	
 	@RequestMapping(value = "/story", method = RequestMethod.GET)
-	public String story() throws Exception {
-		logger.info("story");
+	public String story(HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		MemberVO userinfo = (MemberVO) session.getAttribute("user");
 		
+		logger.info("story");
 		return "story/story";
 	}
 	
@@ -51,12 +62,16 @@ public class StoryController {
 		
 	}
 	@RequestMapping(value = "/gallery", method = RequestMethod.GET)
-	public String galget(Model model) throws Exception {
+	public String galget(Model model, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		MemberVO userinfo = (MemberVO) session.getAttribute("user");
 		logger.info("gallery");
+		
 		List<PhotoboardVO> pbposts = photoboardservice.loadPosts();
-		//List<Photoboard_ReplyVO> pbrlist = photoboardreplyservice.getReplies();
+		
 		
 		model.addAttribute("pbposts", pbposts);
+		
 		return "story/gallery";
 	}
 		
@@ -124,10 +139,25 @@ public class StoryController {
 		return "redirect:gallery";
 	}
 	
-	@RequestMapping(value = "/gallery", method = RequestMethod.PUT)
-	public String galput() throws Exception {
-		logger.info("galleryPut");
+	public static Date DFfunction(Date date) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String t1 = sdf.format(date);
+		Date t2 = sdf.parse(t1);
+		return t2;		
+	}
+	
+	@RequestMapping(value = "gallery", method = RequestMethod.PUT, produces = "application/json; charset=utf8")
+	public @ResponseBody Object galput(Model model, HttpServletRequest request) throws Exception {
+		logger.info("galleryPUT");
 		
-		return "story/gallery_upload";
+		String par = request.getParameter("p_no");
+		int p_no = Integer.parseInt(par);
+		List<Photoboard_ReplyVO> loadreplies = photoboardreplyservice.loadReplies(p_no);
+		
+		for(int i = 0; i < loadreplies.size(); i++) {
+			loadreplies.get(i).setRegdate(DFfunction(loadreplies.get(i).getRegdate()));
+		}
+		
+		return loadreplies;
 	}
 }

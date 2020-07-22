@@ -12,7 +12,6 @@ import com.doggle.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 
 	@Inject MemberDao dao;
-	@Inject SqlSession sql;
 	
 	@Override
 	public void signup(MemberVO memberVO) throws Exception{
