@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,30 +61,16 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach items="${FreeboardStory }" var= "FreeboardStory">
 								<tr>
-									<td>1</td>
-									<td>제목</td>
-									<td>writer</td>
-									<td>regdate</td>
-									<td>viewcnt</td>
-									<td>recommend</td>
+								<td>${FreeboardStory.p_no }</td>
+								<td><a href="../story/detailStoryView?p_no=${FreeboardStory.p_no }">${FreeboardStory.fb_title }</a></td>
+								<td>${FreeboardStory.user_id }</td>
+								<td>${FreeboardStory.regdate }</td>
+								<td>${FreeboardStory.viewcnt }</td>
+								<td>${FreeboardStory.recommend }</td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>우리 고양이 참 이쁘죵?!</td>
-									<td>김정수</td>
-									<td>20-07-19</td>
-									<td>325</td>
-									<td>265</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>제목</td>
-									<td>writer</td>
-									<td>regdate</td>
-									<td>viewcnt</td>
-									<td>recommend</td>
-								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<form action="./story/story.jsp" method="get" class="form-inline my-2 my-lg-0">
@@ -91,8 +78,13 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
         </form>
 						
-						<a class="btn btn-primary pull-right">글쓰기</a>
-						
+<% String context = request.getContextPath(); %>
+   <form action="detailStoryWriter" role="form" autocomplete="off" method='GET'>
+      <div class="inputArea">
+         <button type="submit" id="register_Btn" class="btn btn-primary">글쓰기</button>
+      </div>
+      </form>
+      
 						<div class="text-center">
 							<ul class="pagination">
 								<li><a href="#">1</a></li>

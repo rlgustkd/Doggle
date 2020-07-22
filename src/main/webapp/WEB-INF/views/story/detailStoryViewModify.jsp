@@ -79,31 +79,20 @@
 				class="form-control" id="fb_content" name="contents"
 				value="${read.fb_content }" readonly>
 		</div>
-		<button id="modify_btn">수정하기</button>
-		<button id="modify_btn">삭제하기</button>
-		<button id="modify_btn">추천</button>
-	
-
-	<script>
+		<button id="modify_btn">수정하기</button><button id="cancel_btn">취소</button>
+		
+		
+		<script>
 		// 폼을 변수에 저장
-		var formOjb = $("form[role='form']");
-
-		// 수정 버튼 클릭
-		$("#modity_btn").click(function() {
-			formOjb.attr("action", "/detailStoryView/modify");
-			formOjb.attr("method", "get");
-			formObj.submit();
-
-		});
-
-		// 삭제 버튼 클릭
-		$("delete_btn").click(function() {
-			formOjb.attr("aciton", "/detailStoryView/delete");
-			formOjb.attr("method", "get");
-			formOjb.submit();
-
-		});
-	</script>
+		var formObj = $("form[role='form']";)
+		
+		// 취소 버튼 클릭
+		$("#cancel_btn").click(function()){
+			formObj.attr("action", "/story/read?p_no=" +$("#p_no").val());
+			formObj.attr("method", "get");
+			fromObj.submit();
+			});
+		</script>
 </section>
 
 

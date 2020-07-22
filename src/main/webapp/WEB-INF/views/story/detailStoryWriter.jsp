@@ -46,18 +46,15 @@
       </div>
     </section>
     
-   <form action='<c:url value='/board/boardInsert'/>' method="post">
-        <div class="form-group">
-              <label for="exampleFormControlInput1">제목</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="제목을 작성해주세요.">
+   <form action='<c:url value='/story/et'/>' method="get">
+        <div class="form-group" align="left">
+              <label for="fb_title">제목</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요.">
           </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">작성자id</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="crea_id" placeholder="이름을 적어주세요.">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">내용</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="10"></textarea>
+        
+          <div class="form-group" align="left">
+            <label for="fb_content">내용</label>
+            <textarea class="form-control" id="content" name="contents" rows="10" placeholder="내용을 입력하세요"></textarea>
           </div>
         <button type="submit" class="btn btn-info">등록하기</button>
         <button type="button" class="btn btn-secondary">목록으로</button>
