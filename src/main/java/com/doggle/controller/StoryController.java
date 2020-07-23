@@ -139,25 +139,43 @@ public class StoryController {
 		return "redirect:gallery";
 	}
 	
-	public static Date DFfunction(Date date) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String t1 = sdf.format(date);
-		Date t2 = sdf.parse(t1);
-		return t2;		
-	}
 	
 	@RequestMapping(value = "gallery", method = RequestMethod.PUT, produces = "application/json; charset=utf8")
 	public @ResponseBody Object galput(Model model, HttpServletRequest request) throws Exception {
 		logger.info("galleryPUT");
 		
-		String par = request.getParameter("p_no");
-		int p_no = Integer.parseInt(par);
+		String pno = request.getParameter("p_no");
+		String r_content = request.getParameter("r_content");
+		String user_id = request.getParameter("user_id");
+		String rno = request.getParameter("r_no");
+		int p_no = Integer.parseInt(pno);			
+		
+		
+		if(rno != "") {
+			int r_no = Integer.parseInt(rno);
+			photoboardreplyservice.deleteComment(r_no);
+		}
+		
+		logger.info(pno + "~~" + r_content + "~~" + user_id);
+		
+		
+
+		if((r_content != "") && (user_id != "")) {
+			logger.info("stop");
+			Photoboard_ReplyVO newcomment = new Photoboard_ReplyVO();
+			newcomment.setP_no(p_no);
+			newcomment.setR_content(r_content);
+			newcomment.setUser_id(user_id);
+			
+			photoboardreplyservice.addComment(newcomment);
+		}
+		
+		
 		List<Photoboard_ReplyVO> loadreplies = photoboardreplyservice.loadReplies(p_no);
 		
-		for(int i = 0; i < loadreplies.size(); i++) {
-			loadreplies.get(i).setRegdate(DFfunction(loadreplies.get(i).getRegdate()));
-		}
+		
 		
 		return loadreplies;
 	}
+	
 }

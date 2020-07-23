@@ -33,7 +33,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">
 	
-    
+    <style>
+     .delPost {
+    	float: right;
+     }
+    </style>
 </head>
 <body>
 	<!-- Start of Topbar -->
@@ -55,7 +59,10 @@
       </div>
     </section> 
     <!-- 여기가 메인 컨텐츠 -->
+    <c:set var="user" value="${sessionScope.user}"/>
+    <c:if test="${user != null }">
     <a href="galleryUpload">작성하기</a>
+    </c:if>
         <section class="site-section" id="gallery-section">
 
                 <div class="row justify-content-center" data-aos="fade-up">
@@ -92,7 +99,10 @@
                         	<br>                    	
                             <p>${pbposts.pb_content }</p>
                             <p><br><i class="fa fa-eye" aria-hidden="true"></i> ${pbposts.viewcnt }  
-                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='fa fa-comment'></i> <span name="com">0</span> </p>
+                            <i class="fa fa-heart"></i> ${pbposts.recommend } <i class='fa fa-comment'></i> <span name="com">0</span> 
+                            
+                            <span class="delPost">삭제하기</span></p>
+                            
                             </div>
                             <hr>
                             <div class="reply-list">
@@ -104,8 +114,9 @@
                                    <img src="${pageContext.request.contextPath}/resources/images/${sessionScope.user.pic}">
                                 </div>
                                 <div class="input_rep" >
-                                    <input type="text" id="inputReply" value="" placeholder="Add a comment...">
-                                    <input type="button" value="게시" id="inputsubmit">
+                                	<input type="hidden" class="your_id" name="${pbposts.p_no }" value="${sessionScope.user.user_id }">
+                                    <input type="text" id="inputReply" name="inputReply" value="" placeholder="Add a comment...">
+                                    <input type="button" value="게시" id="inputsubmit" name="inputsubmit">
                                 </div>
                     		</c:if>
                      		 <c:if test="${user == null}">
@@ -117,89 +128,11 @@
                                     
                                 </div>
                     		</c:if>
-                            <div class="add-reply">
-                                
-
-                            </div>
                         </div>
 
                     </div>
 					</c:forEach>	 
-					
-                    <div class="imglist">
-                        <a href="${pageContext.request.contextPath}/resources/images/dogger_trainer_2.jpg" data-fancybox="images_1">
-                            <img src="https://source.unsplash.com/Lzx4J_Pb3sk/240x160" />
-
-                        </a>
-                        <a href="https://source.unsplash.com/AbNO2iejoXA/832x1200" data-fancybox="images_1" data-type="image"></a>
-
-                        <a href="https://source.unsplash.com/CdK2eYhWfQ0/832x1200" data-fancybox="images_1" data-type="image"></a>
-
-                        <div class="caption">
-                            <p>Grasshopper lynx some much dear fish before beneath rattlesnake aside well but moth well more far the gosh meadowlark enviable apt jeepers locked alas.</p>
-                            <p>Stylistic jay conic laughed dear less earthworm worm some groundhog far avowedly mastodon unobtrusive dogged obediently that ordered rancorous goodness far this alas until oh unkind.</p>
-                            <p><br><i class="fa fa-eye" aria-hidden="true"></i> 100 
-                            <i class="fa fa-heart"></i> 30 <i class='far fa-comment-dots'></i> 3 </p>
-                            
-                            <hr>
-                            <div class="reply-list">
-                                <div style="display: flex;">
-                                    <div class="user_pic" style="float:left;">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
-                                    </div>
-                                    <div class="reply_content"> <span class="rep_userid">동기현</span>
-                                        <p>
-                                            그들의 우는 커다란 할지니, 그와 뜨거운지라, 봄날의 있다.
-                                        </p>
-                                        <p class="replytime">2020-07-18</p>
-                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div style="display: flex;">
-                                    <div class="user_pic">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
-                                    </div>
-                                    <div class="reply_content"> <span class="rep_userid">유승욱</span>
-                                        <p>
-                                            바로 불러 고행을 되려니와, 살 그들은 보배를 뿐이다. 가치를 생명을 그들의 원대하고, 힘차게 목숨이
-                                        </p>
-                                        <p class="replytime">2020-07-18</p>
-                                        <p class="replytime model"><a href="#">수정</a> <a href="#">삭제</a></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div style="display: flex;">
-                                    <div class="user_pic">
-                                        <img src="${pageContext.request.contextPath}/resources/images/profile.jpg">
-                                    </div>
-                                    <div class="reply_content"> <span class="rep_userid">김정수</span>
-                                        <p>우리 같은 사막이다.</p>
-                                        <p class="replytime">2020-07-19</p>
-                                        <p class="replytime model"><a href="#">수정</a> / <a href="#">삭제</a></p>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                            <div class="add-reply">
-                                <div class="user_pic">
-                                    <img src="${pageContext.request.contextPath}/resources/images/jjangahhh.jpg">
-                                </div>
-                                <div class="input_rep" >
-                                    <input type="text" id="inputReply" value="" placeholder="Add a comment...">
-                                    <input type="button" value="게시" id="inputsubmit">
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                     
-                    
-                    
-
-
-                </div>
+				</div>
         </section>
 
 
@@ -231,29 +164,67 @@
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script>
 	
-
-
+	var p_no;
+	$('img[name=thumbnail]').click(function() {
+    	
+    	p_no = $(this).parent().attr("data-fancybox");
 		
-        $('img[name=thumbnail]').click(function() {
-        	
-        	var p_no = $(this).parent().attr("data-fancybox");
-             	
+        ajaxfunction(p_no, "", "", "");
+
+    });
+		$(function() {
+			$(document).on('click', '#inputsubmit', function() {
+				var r_userId = $(this).parent().children(".your_id").val();
+				var r_content = $(this).parent().children("#inputReply").val();
+				var p_no = $(this).parent().children(".your_id").attr('name');
+				if(r_content == "") {
+					alert("댓글 내용을 입력해주세요.");
+				}
+				else {
+					ajaxfunction(p_no, r_content, r_userId, "");
+				}
+				$(this).parent().children("#inputReply").val("");
+				r_content = "";
+		        
+			});
+
+			$(document).on('click', '.delReply', function() {
+				var r_no = $(this).attr('value');
+				var result = confirm('삭제하시겠습니까? 삭제하시면 복구할 수 없습니다.');
+
+				if(result)
+					ajaxfunction(p_no, "", "", r_no);
+			});
+		});
+		
+        function ajaxfunction(p_no, r_content, user_id, r_no) {
         	$.ajax({
 	            url : "gallery",                    // 전송 URL
 	            type : 'PUT',                // GET or POST 방식
 	            traditional : true,
 	            dataType: 'json',
 	            data : {
-	                p_no : p_no       // 보내고자 하는 data 변수 설정
+	                p_no : p_no,       // 보내고자 하는 data 변수 설정
+	                r_content : r_content,
+	                user_id : user_id,
+	                r_no : r_no
 	            },
 	            
 	            //Ajax 성공시 호출 
 	            success : function(msg){
-		            $('span[name=com]').text(msg.length);
+					$('span[name=com]').text(msg.length);
 	            	$('.reply-list').empty();
 		            for(var i=0; i < msg.length; i++) {
 						var html = "<div style='display: flex;'><div class='user_pic' style='float:left;'><img src=" 
-						+ "${pageContext.request.contextPath}/resources/images/" + msg[i].pic + "></div><div class='reply_content'><span class='rep_userid'>" + msg[i].nickname + "</span><p>" + msg[i].r_content + "</p><p class='replytime'>" + setNumber(msg[i].regdate) + "</p><p class='replytime model'><a href='#'>수정</a> <a href='#'>삭제</a></p></div></div><hr>";
+						+ "${pageContext.request.contextPath}/resources/images/" + msg[i].pic + "></div><div class='reply_content'><span class='rep_userid'>" + msg[i].nickname + "</span><p>" + msg[i].r_content + "</p><p class='replytime'>" + setNumber(msg[i].regdate) + "</p><p class='replytime model'>";
+
+						if(msg[i].user_id == $(".your_id").val()) {
+							html = html + "<a value=" + msg[i].r_no + " class='delReply'>삭제</a></p></div></div><hr>";	
+						}
+						else {
+							html = html + "</p></div></div><hr>";
+						}
+							
 						$(".reply-list").append(html);
 						
 				    }
@@ -265,10 +236,10 @@
 	            }
 	        });
 
-        });
+        };
         
         function setNumber(date) {
-        	var dt = new Date();
+        	var dt = new Date(date);
           	 
             var recentYear = dt.getFullYear();
             var recentMonth = dt.getMonth() + 1;
@@ -284,7 +255,7 @@
         $('[data-fancybox]').fancybox({
             preventCaptionOverlap: false,
             infobar: false,
-
+            
             // Disable idle
             idleTime: 0,
 
@@ -300,7 +271,7 @@
             },
 
             onInit: function(instance) {
-
+            	
                 // Toggle caption on tap
                 instance.$refs.container.on('touchstart', '[data-fancybox-info]', function(e) {
                     e.stopPropagation();
@@ -314,6 +285,7 @@
             }
 
         });
+        
     </script>
   
   </body>
