@@ -1,6 +1,5 @@
 package com.doggle.vo;
 
-import java.sql.Date;
 
 public class WalkVO {
 	private int b_no;
@@ -9,7 +8,7 @@ public class WalkVO {
 	private String w_content;
 	private String lng;
 	private String lat;
-	private Date date;
+	private String phone;
 	private String w_photo;
 	private int use_flag;
 	public int getB_no() {
@@ -48,11 +47,11 @@ public class WalkVO {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
-	public Date getDate() {
-		return date;
+	public String getPhone() {
+		return phone;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getW_photo() {
 		return w_photo;
@@ -69,9 +68,11 @@ public class WalkVO {
 	@Override
 	public String toString() {
 		return "WalkVO [b_no=" + b_no + ", p_no=" + p_no + ", w_title=" + w_title + ", w_content=" + w_content
-				+ ", lng=" + lng + ", lat=" + lat + ", date=" + date + ", w_photo=" + w_photo + ", use_flag=" + use_flag
-				+ "]";
+				+ ", lng=" + lng + ", lat=" + lat + ", phone=" + phone + ", w_photo=" + w_photo + ", use_flag="
+				+ use_flag + "]";
 	}
+	
+	
 	
 	
 }

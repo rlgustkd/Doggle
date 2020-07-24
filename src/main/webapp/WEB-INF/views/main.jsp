@@ -40,7 +40,7 @@
           <div class="col-md-7 align-self-center text-center text-md-left">
             <div class="intro-text">
               <h1>We Care For <span class="d-md-block">Your Dog</span></h1>
-              <p class="mb-4">We always try to provide your dog the best<span class="d-block"> services.</p>
+              <p class="mb-4">We always try to provide your dog the best<span class="d-block"> services.</span></p>
             </div>
           </div>
           <div class="col-md-5 align-self-end text-center text-md-right">
@@ -394,41 +394,6 @@
                   <img src="${pageContext.request.contextPath}/resources/images/person_2.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
                 </figure>
                 <h3 class="font-size-20 mb-4 text-black">Ken Davis</h3>
-
-                
-              </div>
-            </div>
-
-            <div>
-              <div class="block-testimony-1 text-center">
-                
-
-                <blockquote class="mb-4">
-                  <p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-                </blockquote>
-
-                <figure>
-                  <img src="${pageContext.request.contextPath}/resources/images/person_1.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
-                </figure>
-                <h3 class="font-size-20 text-black">Mellisa Griffin</h3>
-
-                
-              </div>
-            </div>
-
-            <div>
-              <div class="block-testimony-1 text-center">
-
-                
-
-                <blockquote class="mb-4">
-                  <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                </blockquote>
-
-                <figure>
-                  <img src="${pageContext.request.contextPath}/resources/images/person_3.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
-                </figure>
-                <h3 class="font-size-20 mb-4 text-black">Robert Steward</h3>
 
                 
               </div>

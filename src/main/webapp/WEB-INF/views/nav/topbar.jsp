@@ -50,7 +50,7 @@
                   <ul class="dropdown">
                     <li><a href="info/hospital" class="nav-link">병원</a></li>
                     <li><a href="info/hotel" class="nav-link">호텔</a></li>
-                    <li><a href="info/outdoor" class="nav-link">애견 동반</a></li>
+                    <li><a href="info/walk" class="nav-link">애견 동반</a></li>
                     <li><a href="info/petshop" class="nav-link">애견샵</a></li>
                   </ul>
                 </li>

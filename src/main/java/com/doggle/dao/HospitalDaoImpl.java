@@ -27,4 +27,10 @@ public class HospitalDaoImpl implements HospitalDao {
 		return sqlSession.selectList("hospitalMapper.getByteImage");
 	}
 
+	@Override
+	public HospitalVO detailImage(HospitalVO hospitalVO) throws Exception {
+		return sqlSession.selectOne("hospitalMapper.detailImage", hospitalVO);
+	}
+
+
 }
