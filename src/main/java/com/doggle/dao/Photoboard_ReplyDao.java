@@ -11,4 +11,6 @@ public interface Photoboard_ReplyDao {
 	public void addComment(Photoboard_ReplyVO newcomment) throws Exception;
 	
 	public void deleteComment(int r_no) throws Exception;
+
+	public List<Photoboard_ReplyVO> loadAllReplies() throws Exception;
 }

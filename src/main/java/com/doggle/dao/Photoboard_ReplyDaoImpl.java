@@ -35,5 +35,10 @@ public class Photoboard_ReplyDaoImpl implements Photoboard_ReplyDao {
 		sqlSession.update("photoboard_replyMapper.deleteComment", r_no);
 	}
 
+	@Override
+	public List<Photoboard_ReplyVO> loadAllReplies() throws Exception {
+		return sqlSession.selectList("photoboard_replyMapper.loadAllReplies");
+	}
+
 
 }

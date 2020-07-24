@@ -68,9 +68,10 @@ public class StoryController {
 		logger.info("gallery");
 		
 		List<PhotoboardVO> pbposts = photoboardservice.loadPosts();
-		
+		List<Photoboard_ReplyVO> loadAllreplies = photoboardreplyservice.loadAllReplies();
 		
 		model.addAttribute("pbposts", pbposts);
+		model.addAttribute("replies", loadAllreplies);
 		
 		return "story/gallery";
 	}

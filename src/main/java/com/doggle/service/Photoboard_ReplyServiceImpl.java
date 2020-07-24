@@ -25,6 +25,10 @@ public class Photoboard_ReplyServiceImpl implements Photoboard_ReplyService {
 	public void deleteComment(int r_no) throws Exception {
 		dao.deleteComment(r_no);
 	}
+	@Override
+	public List<Photoboard_ReplyVO> loadAllReplies() throws Exception {
+		return dao.loadAllReplies();
+	}
 
 
 }
