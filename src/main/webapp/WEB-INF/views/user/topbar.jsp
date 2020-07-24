@@ -66,20 +66,20 @@
 
 								<li class="has-children"><a class="nav-link">Story</a>
 									<ul class="dropdown">
-										<li><a href="../story/story" class="nav-link">자유게시판</a></li>
-										<li><a href="../story/photostory" class="nav-link">사진게시판</a></li>
+										<li><a href="../doggle/story/freeboard" class="nav-link">자유게시판</a></li>
+										<li><a href="../doggle/story/photostory" class="nav-link">사진게시판</a></li>
 									</ul></li>
 
 								<c:set var="user" value="${user.user_id}" />
 								<c:if test="${user != null}">
 									<li class="has-children"><a class="nav-link">My Page</a>
 										<ul class="dropdown">
-											<li><a href="../user/mypage" class="nav-link">마이페이지</a></li>
-											<li><a href="../user/logout" class="nav-link">Logout</a></li>
+											<li><a href="../doggle/user/mypage" class="nav-link">마이페이지</a></li>
+											<li><a href="../doggle//user/logout" class="nav-link">Logout</a></li>
 										</ul></li>
 								</c:if>
 								<c:if test="${user == null}">
-									<li><a href="../user/user" class="nav-link">로그인</a></li>
+									<li><a href="http://localhost:8080/doggle/user/user" class="nav-link">로그인</a></li>
 								</c:if>
 
 

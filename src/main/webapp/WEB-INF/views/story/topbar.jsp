@@ -49,9 +49,11 @@
 					</div>
 
 					<div class="col-12 col-md-10 d-none d-xl-block">
+					
+					
 						<nav class="site-navigation position-relative text-right"
 							role="navigation">
-
+<!-- <input type="text" id="user_id" name="user_id" value="dhdhd"> -->
 							<ul
 								class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
 
@@ -66,7 +68,7 @@
 
 								<li class="has-children"><a class="nav-link">Story</a>
 									<ul class="dropdown">
-										<li><a href="../story/story" class="nav-link">자유게시판</a></li>
+										<li><a href="../story/freeboard" class="nav-link">자유게시판</a></li>
 										<li><a href="../story/photostory" class="nav-link">사진게시판</a></li>
 									</ul></li>
 
@@ -100,5 +102,9 @@
 
 		</header>
 	</div>
+
+	
+	
+	
 </body>
 </html>

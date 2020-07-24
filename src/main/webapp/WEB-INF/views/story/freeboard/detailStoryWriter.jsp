@@ -29,7 +29,7 @@
 
 	<!-- Start of Topbar -->
 	
-<%@include file="../nav/topbar.jsp"%>
+<%@include file="../../nav/topbar.jsp"%>
     
     <!-- End of Topbar -->
 
@@ -39,17 +39,34 @@
         <div class="row">
           <div class="col-md-7 align-self-center text-center text-md-left">
             <div class="intro-text">
-				<font size=30px>마이페이지</font>   			
+				<font size=30px>자유게시판</font>   			
     		</div>
       	  </div>
      	</div>
       </div>
-    </section> 
+    </section>
+    
+   <form action='<c:url value='/story/et'/>' method="get">
+        <div class="form-group" align="left">
+              <label for="fb_title">제목</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요.">
+          </div>
+        
+          <div class="form-group" align="left">
+            <label for="fb_content">내용</label>
+            <textarea class="form-control" id="content" name="contents" rows="10" placeholder="내용을 입력하세요"></textarea>
+          </div>
+        <button type="submit" class="btn btn-info">등록하기</button>
+        <button type="button" class="btn btn-secondary">목록으로</button>
+    </form>
+
+    
+    
     <!-- End of main -->
     
     <!-- Start of footer -->
     
-	<%@include file="../nav/footer.jsp"%>
+	<%@include file="../../nav/footer.jsp"%>
   	
   	<!-- End of footer --> 
   <!-- .site-wrap -->

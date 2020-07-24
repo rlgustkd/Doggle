@@ -39,11 +39,40 @@
 								
 					VALUES (1, 
 							b_no_seq.nextval, 
-							${user_id}, 
+							#{user_id}, 
 							#{fb_title}, 
 							NVL(#{fb_content:VARCHAR}, EMPTY_CLOB()),
 							sysdate, 0, 0, 0, 0)
 
 	</insert>
 
+
+
+	<!-- 조회 -->
+	<select id="read" resultType="com.doggle.vo.FreeboardVO">
+		SELECT *
+		FROM FREEBOARD WHERE p_no = #{p_no}
+	</select>
+	
+	<!-- 목록 출력 -->
+	<select id="list" resultType="com.doggle.vo.FreeboardVO">
+		SELECT B_NO, P_NO, USER_ID, FB_TITLE, FB_CONTENT, REGDATE,VIEWCNT,RECOMMEND,REPORTCNT,USE_FLAG
+		FROM FREEBOARD WHERE USE_FLAG = 0 order by p_no desc
+	</select>
+	
+	<!-- 수정 -->
+	<update id="update">
+		update FREEBOARD set
+		FB_TITLE = #{FB_TITLE},
+		FB_CONTENT = #{FB_CONTENT}
+		where p_no = #{p_no}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+	delete from FREEBOARD
+	where p_no = #{p_no}
+	</delete>
+	
+	
 </mapper>

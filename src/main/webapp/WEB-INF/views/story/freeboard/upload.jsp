@@ -1,146 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+    <title>Doggle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
 <title>자유게시판 글 등록</title>
 
-<!-- <script src="/resources/jquery/jquery-3.3.1.min.js"></script> -->
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/icomoon/style.css">
 
-<link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/resources/bootstrap/bootstrap-theme.min.css">
-<script src="/resources/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.css">
 
-<style>
-body {
-	font-family: '맑은 고딕', verdana;
-	padding: 0;
-	margin: 0;
-}
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/flaticon/font/flaticon.css">
 
-ul {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
 
-div#root {
-	width: 90%;
-	margin: 0 auto;
-}
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
-header#header {
-	font-size: 60px;
-	padding: 20px 0;
-}
-
-header#header h1 a {
-	color: #000;
-	font-weight: bold;
-}
-
-nav#nav {
-	padding: 10px;
-	text-align: right;
-}
-
-nav#nav ul li {
-	display: inline-block;
-	margin-left: 10px;
-}
-
-section#container {
-	padding: 20px 0;
-	border-top: 2px solid #eee;
-	border-bottom: 2px solid #eee;
-}
-
-section#container::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-aside {
-	float: left;
-	width: 200px;
-}
-
-div#container_box {
-	float: right;
-	width: calc(100% - 200px - 20px);
-}
-
-aside ul li {
-	text-align: center;
-	margin-bottom: 10px;
-}
-
-aside ul li a {
-	display: block;
-	width: 100%;
-	padding: 10px 0;
-}
-
-aside ul li a:hover {
-	background: #eee;
-}
-
-footer#footer {
-	background: #f9f9f9;
-	padding: 20px;
-}
-
-footer#footer ul li {
-	display: inline-block;
-	margin-right: 10px;
-}
-</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-<style>
-.inputArea {
-	margin: 10px 0;
-}
 
-select {
-	width: 100px;
-}
-
-label {
-	display: inline-block;
-	width: 70px;
-	padding: 5px;
-}
-
-label[for='gdsDes'] {
-	display: block;
-}
-
-input {
-	width: 150px;
-}
-
-textarea#gdsDes {
-	width: 400px;
-	height: 180px;
-}
-
-.select_img img {
-	margin: 20px 0;
-}
-</style>
 
 </head>
 
-<body>
+
+    	<!-- Start of Topbar -->
+	
+<%@include file="../../nav/topbar.jsp"%>
+    
+    <!-- End of Topbar -->
+
+  	<!-- Start of main -->
+  	<section class="site-blocks-cover overflow-hidden bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 align-self-center text-center text-md-left">
+            <div class="intro-text">
+				<font size=30px>자유게시판</font>   	
+    		</div>
+      	  </div>
+     	</div>
+      </div>
+    </section>
+    
+    
 	<%
 		String context = request.getContextPath();
 	%>
@@ -170,7 +85,8 @@ textarea#gdsDes {
 		<!-- <input type="hidden" id="fb_content" onchange="valueChange()">  -->
 		
 		<input type="hidden" id="fb_content" name="fb_content" value="abcdefg">
-
+		
+		<input type="hidden" id="user_id" name="user_id" value="">
 
 
 		<div class="inputArea">
@@ -211,6 +127,8 @@ textarea#gdsDes {
 
 		<div class="inputArea">
 			<button type="button" id="register_Btn" class="btn btn-primary">등록</button>
+			
+			<button type="button" class="btn btn-primary" onclick="location.href='../freeboard' ">취소</button>
 		</div>
 
 	</form>
@@ -224,6 +142,7 @@ textarea#gdsDes {
 		 }
 
 		 */
+
 		$("#register_Btn").click(function() {
 
 			/* String id = request.getParameter("user_id"); */
@@ -242,6 +161,38 @@ textarea#gdsDes {
 	</script>
 	
 	
+	
+	
+	
+	
+	
+	
+    
+    <!-- End of main -->
+    
+    <!-- Start of footer -->
+    
+	<%@include file="../../nav/footer.jsp"%>
+  	
+  	<!-- End of footer --> 
+  <!-- .site-wrap -->
+
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/isotope.pkgd.min.js"></script>
+
+  
+  <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+
+  
 	
 
 </body>
