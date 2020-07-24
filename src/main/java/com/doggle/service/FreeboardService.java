@@ -5,4 +5,6 @@ import com.doggle.vo.FreeboardVO;
 public interface FreeboardService {
 
 	public void upload(FreeboardVO freeboardVO) throws Exception;
+	
+	public void registClobData(FreeboardVO freeboardVO) throws Exception;
 }

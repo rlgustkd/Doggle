@@ -42,7 +42,6 @@ public class InfoController {
 	@Inject
 	HospitalService hospitalService;
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(InfoController.class);
 	
 	@RequestMapping(value = "/hospital", method = RequestMethod.GET)

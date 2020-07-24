@@ -144,62 +144,105 @@ textarea#gdsDes {
 	<%
 		String context = request.getContextPath();
 	%>
+
+
 	<form action="<%=context%>/story/freeboard/upload" role="form"
-		method="post" autocomplete="off" enctype="multipart/form-data">
+		method="post" autocomplete="off" enctype="multipart/form-data"
+		name="fbform">
 
 		<div class="inputArea">
-			<label for="fb_title">제목</label> <input type="text" id="fb_title"
-				name="fb_title" />
+			<label for="fb_title">제목</label> 
+			<input type="text" id="fb_title" name="fb_title" />
 		</div>
 
 
 		<div class="inputArea">
-			<label for="fb_content">내용</label>
-			<!-- <div rows="5" cols="50" id="fb_content" name="fb_content" contentEditable="true" class="select_img" ><img src=""></div> -->
-			<div rows="5" cols="50" id="fb_content" name="fb_content"
-				contentEditable="true">
+			<label for="content">내용</label>
+			<div rows="5" cols="50" id="content" contentEditable="true">
+				<img src="">
 			</div>
+		</div>
+
+		<!-- <input type="text" id="fb_content" name="fb_content" contentEditable="true"/></div>   -->
+		<!-- <div rows="5" cols="50" id="fb_content" name="fb_content" contentEditable="true"></div> </div> -->
+
+
+		<!-- <input type="hidden" id="fb_content" onchange="valueChange()">  -->
+		
+		<input type="hidden" id="fb_content" name="fb_content" value="abcdefg">
 
 
 
-			<div class="inputArea">
-				<label for="fb_photo">이미지</label> <input type="file" id="fb_photo"
-					name="file" />
-				<!-- 			<div class="select_img"><img src="" /></div> -->
-			</div>
+		<div class="inputArea">
+			<label for="fb_photo">이미지</label> <input type="file" id="fb_photo"
+				name="file" />
+			<!-- <div class="select_img"><img src="" /></div> -->
+		</div>
 
-			<script>
-				$("#fb_photo").change(
-						function() {
-							if (this.files && this.files[0]) {
-								var reader = new FileReader;
-								//var html = "<div class=" + "select_img" + "><img src=" + " /></div>"
-								reader.onload = function(data) {
-									$(".select_img img").attr("src",
-											data.target.result).width(500);
-									//$("#fb_content").append(html);
-								}
-								reader.readAsDataURL(this.files[0]);
+
+		<script>
+			$("#fb_photo").change(
+					function() {
+						if (this.files && this.files[0]) {
+							var reader = new FileReader;
+							reader.onload = function(data) {
+
+								var imgarea = document.createElement('img');
+								// <img> 와 같은 변수를 만든것 (태그 동적생성)
+
+								imgarea.src = data.target.result;
+								// DOM 방식. target?? 대략, 이미지소스를 만들어주고 거기에 우리가 선택한 data(사진)을 넣어주겠다.
+
+								imgarea.style.width = 240 + "px";
+								// 사이즈만 변경해줌.
+
+								document.getElementById('content').appendChild(
+										imgarea);
+								//f_content 를 아이디로 가지고있는 요소에게 접근(가져옴). 자식요소로 imgarea를 넣어주겠다.
+
 							}
-						});
-			</script>
-
-
-		</div>
+							reader.readAsDataURL(this.files[0]);
+						}
+					});
+		</script>
 
 
 		<%=request.getRealPath("/")%>
 
 		<div class="inputArea">
-			<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+			<button type="button" id="register_Btn" class="btn btn-primary">등록</button>
 		</div>
 
-
 	</form>
+	<script type="text/javascript">
+		/* 		function Change() {
+		
+		 $('#fb_content').val('change!!!!!');
+		
+		 $('#fb_content').change();
+		
+		 }
 
+		 */
+		$("#register_Btn").click(function() {
 
+			/* String id = request.getParameter("user_id"); */
+			
+			var abc = $('#content').html();
+			alert(abc);
+			
+			document.getElementById('fb_content').setAttribute('value', abc);
 
-	</form>
+			var a = document.getElementById('fb_content').value;
+			alert(a);
+
+			document.fbform.submit();
+		});
+			
+	</script>
+	
+	
+	
 
 </body>
 </html>
