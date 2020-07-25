@@ -2,7 +2,25 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="hotelrMapper">
+<mapper namespace="hotelMapper">
 
+<!-- 이미지 업로드 -->
+<insert id="saveImage" >
+insert into hotel (b_no, p_no, ht_title, ht_content, lng, lat, ht_photo, use_flag)
+values (3,d_p_no_seq.nextval,'제목','내용',1,1,#{ht_photo},1)
+</insert>
+
+<!-- 이미지 출력 -->
+<select id="getByteImage" resultType="com.doggle.vo.HotelVO">
+    SELECT b_no, p_no, ht_title, ht_content, lng, lat, phone, ht_photo, use_flag
+    FROM hotel
+</select>
+
+<!-- 추천목록 상세보기 이미지 출력 -->
+<select id="detailImage" resultType="com.doggle.vo.HotelVO">
+	select b_no, p_no, ht_title, ht_content, lng, lat, phone, ht_photo, use_flag
+	from hotel
+	where p_no = #{p_no}
+</select>
 
 </mapper>

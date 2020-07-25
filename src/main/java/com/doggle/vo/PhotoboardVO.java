@@ -5,23 +5,18 @@ import java.sql.Date;
 public class PhotoboardVO {
 	private int b_no;
 	private int p_no;
-	private String id;
+	private String user_id;
 	private String pb_title;
 	private String pb_content;
-	private Date date;
+	private Date regdate;
 	private String pb_photo;
-	private int view;
+	private int viewcnt;
 	private int recommend;
-	private int report;
+	private int reportcnt;
 	private int use_flag;
+	private String pic;
+	private String nickname;
 	
-	
-	@Override
-	public String toString() {
-		return "PhotoboardVO [b_no=" + b_no + ", p_no=" + p_no + ", id=" + id + ", pb_title=" + pb_title
-				+ ", pb_content=" + pb_content + ", date=" + date + ", pb_photo=" + pb_photo + ", view=" + view
-				+ ", recommend=" + recommend + ", report=" + report + ", use_flag=" + use_flag + "]";
-	}
 	public int getB_no() {
 		return b_no;
 	}
@@ -34,11 +29,11 @@ public class PhotoboardVO {
 	public void setP_no(int p_no) {
 		this.p_no = p_no;
 	}
-	public String getId() {
-		return id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getPb_title() {
 		return pb_title;
@@ -52,11 +47,11 @@ public class PhotoboardVO {
 	public void setPb_content(String pb_content) {
 		this.pb_content = pb_content;
 	}
-	public Date getDate() {
-		return date;
+	public Date getRegdate() {
+		return regdate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 	public String getPb_photo() {
 		return pb_photo;
@@ -64,11 +59,11 @@ public class PhotoboardVO {
 	public void setPb_photo(String pb_photo) {
 		this.pb_photo = pb_photo;
 	}
-	public int getView() {
-		return view;
+	public int getViewcnt() {
+		return viewcnt;
 	}
-	public void setView(int view) {
-		this.view = view;
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
 	}
 	public int getRecommend() {
 		return recommend;
@@ -76,11 +71,11 @@ public class PhotoboardVO {
 	public void setRecommend(int recommend) {
 		this.recommend = recommend;
 	}
-	public int getReport() {
-		return report;
+	public int getReportcnt() {
+		return reportcnt;
 	}
-	public void setReport(int report) {
-		this.report = report;
+	public void setReportcnt(int reportcnt) {
+		this.reportcnt = reportcnt;
 	}
 	public int getUse_flag() {
 		return use_flag;
@@ -88,5 +83,26 @@ public class PhotoboardVO {
 	public void setUse_flag(int use_flag) {
 		this.use_flag = use_flag;
 	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	@Override
+	public String toString() {
+		return "PhotoboardVO [b_no=" + b_no + ", p_no=" + p_no + ", user_id=" + user_id + ", pb_title=" + pb_title
+				+ ", pb_content=" + pb_content + ", regdate=" + regdate + ", pb_photo=" + pb_photo + ", viewcnt="
+				+ viewcnt + ", recommend=" + recommend + ", reportcnt=" + reportcnt + ", use_flag=" + use_flag + ", pic=" + pic + ", nickname=" + nickname + "]";
+	}
+	
+	
 	
 }

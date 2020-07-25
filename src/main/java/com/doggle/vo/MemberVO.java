@@ -6,6 +6,7 @@ public class MemberVO {
 	private String pwd;
 	private String nickname;
 	private String email;
+	private String pic;
 	
 	public String getUser_id() {
 		return user_id;
@@ -31,9 +32,15 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	@Override
 	public String toString() {
-		return "MemberVO [user_id=" + user_id + ", pwd=" + pwd + ", nickname=" + nickname + ", email=" + email + "]";
+		return "MemberVO [user_id=" + user_id + ", pwd=" + pwd + ", nickname=" + nickname + ", email=" + email + ", pic=" + pic + "]";
 	}
 	
 }

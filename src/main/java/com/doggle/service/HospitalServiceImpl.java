@@ -24,6 +24,10 @@ public class HospitalServiceImpl implements HospitalService {
 	public void saveImage(String saveFileName) throws Exception {
 		dao.saveImage(saveFileName);
 	}
+	@Override
+	public HospitalVO detailImage(HospitalVO hospitalVO) throws Exception {
+		return dao.detailImage(hospitalVO);
+	}
 
 
 

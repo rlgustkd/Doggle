@@ -35,12 +35,12 @@
     <!-- End of Topbar -->
 
   	<!-- Start of main -->
-  	<section class="site-blocks-cover overflow-hidden bg-light">
+  	<section style="padding-top: 100px;">
       <div class="container">
         <div class="row">
           <div class="col-md-7 align-self-center text-center text-md-left">
             <div class="intro-text">
-				<font size=30px>자유게시판</font>   			
+				<font size=5px>자유게시판</font>   	
     		</div>
       	  </div>
      	</div>

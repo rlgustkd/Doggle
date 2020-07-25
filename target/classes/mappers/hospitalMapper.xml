@@ -6,14 +6,21 @@
 
 <!-- 이미지 업로드 -->
 <insert id="saveImage" >
-insert into hospital (b_no, h_p_no, h_title, h_content, lng, lat, h_photo, use_flag)
-values (1,h_p_no.nextval,'제목','내용',1,1,#{h_photo},1)
+insert into hospital (b_no, p_no, h_title, h_content, lng, lat, h_photo, use_flag)
+values (1,d_p_no_seq.nextval,'제목','내용',1,1,#{h_photo},1)
 </insert>
 
 <!-- 이미지 출력 -->
 <select id="getByteImage" resultType="com.doggle.vo.HospitalVO">
-    SELECT b_no, d_p_no, h_title, h_content, lng, lat, phone, h_photo, use_flag
+    SELECT b_no, p_no, h_title, h_content, lng, lat, phone, h_photo, use_flag
     FROM hospital
+</select>
+
+<!-- 추천목록 상세보기 이미지 출력 -->
+<select id="detailImage" resultType="com.doggle.vo.HospitalVO">
+	select b_no, p_no, h_title, h_content, lng, lat, phone, h_photo, use_flag
+	from hospital
+	where p_no = #{p_no}
 </select>
 
 

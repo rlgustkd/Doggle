@@ -1,6 +1,5 @@
 package com.doggle.vo;
 
-import java.sql.Date;
 
 public class HotelVO {
 	private int b_no;
@@ -9,7 +8,7 @@ public class HotelVO {
 	private String ht_content;
 	private String lng;
 	private String lat;
-	private Date date;
+	private String phone;
 	private String ht_photo;
 	private int use_flag;
 	public int getB_no() {
@@ -48,11 +47,11 @@ public class HotelVO {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
-	public Date getDate() {
-		return date;
+	public String getPhone() {
+		return phone;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getHt_photo() {
 		return ht_photo;
@@ -69,7 +68,10 @@ public class HotelVO {
 	@Override
 	public String toString() {
 		return "HotelVO [b_no=" + b_no + ", p_no=" + p_no + ", ht_title=" + ht_title + ", ht_content=" + ht_content
-				+ ", lng=" + lng + ", lat=" + lat + ", date=" + date + ", ht_photo=" + ht_photo + ", use_flag="
+				+ ", lng=" + lng + ", lat=" + lat + ", phone=" + phone + ", ht_photo=" + ht_photo + ", use_flag="
 				+ use_flag + "]";
 	}
+	
+	
+	
 }

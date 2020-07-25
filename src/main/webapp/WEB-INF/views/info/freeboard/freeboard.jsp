@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,34 +35,65 @@
     <!-- End of Topbar -->
 
   	<!-- Start of main -->
-  	<section class="site-blocks-cover overflow-hidden bg-light">
+  	<section style="padding-top: 100px;">
       <div class="container">
         <div class="row">
           <div class="col-md-7 align-self-center text-center text-md-left">
             <div class="intro-text">
-				<font size=30px>자유게시판</font>   			
+				<font size=5px>자유게시판</font>   	
     		</div>
       	  </div>
      	</div>
       </div>
     </section>
     
-   <form action='<c:url value='/story/et'/>' method="get">
-        <div class="form-group" align="left">
-              <label for="fb_title">제목</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요.">
-          </div>
-        
-          <div class="form-group" align="left">
-            <label for="fb_content">내용</label>
-            <textarea class="form-control" id="content" name="contents" rows="10" placeholder="내용을 입력하세요"></textarea>
-          </div>
-        <button type="submit" class="btn btn-info">등록하기</button>
-        <button type="button" class="btn btn-secondary">목록으로</button>
-    </form>
-
+   
     
-    
+    <table class="table table-hover">
+							<thead>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>날짜</th>
+									<th>조회수</th>
+									<th>추천수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${FreeboardStory }" var= "FreeboardStory">
+								<tr>
+								<td>${FreeboardStory.p_no }</td>
+								<td><a href="../story/detailStoryView?p_no=${FreeboardStory.p_no }">${FreeboardStory.fb_title }</a></td>
+								<td>${FreeboardStory.user_id }</td>
+								<td>${FreeboardStory.regdate }</td>
+								<td>${FreeboardStory.viewcnt }</td>
+								<td>${FreeboardStory.recommend }</td>
+								</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<form action="../story/freeboard.jsp" method="get" class="form-inline my-2 my-lg-0">
+          <input type="text" name="search" class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요.">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+        </form>
+						
+<% String context = request.getContextPath(); %>
+   <form action="freeboard/upload" role="form" autocomplete="off" method='GET'>
+      <div class="inputArea">
+         <button type="submit" id="register_Btn" class="btn btn-primary">글쓰기</button>
+      </div>
+      </form>
+      
+						<div class="text-center">
+							<ul class="pagination">
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+							</ul>
+						</div>
     <!-- End of main -->
     
     <!-- Start of footer -->

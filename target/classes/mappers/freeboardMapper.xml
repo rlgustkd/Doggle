@@ -29,20 +29,20 @@
 		INSERT INTO freeboard (	b_no, 
 								p_no, 
 								user_id, 
-								fb_title, 
-								fb_content, 
+								fb_title,  
 								regdate,
 								viewcnt, 
 								recommend, 
 								reportcnt, 
-								use_flag) 
+								use_flag,
+								fb_content) 
 								
 					VALUES (1, 
 							b_no_seq.nextval, 
 							#{user_id}, 
 							#{fb_title}, 
-							NVL(#{fb_content:VARCHAR}, EMPTY_CLOB()),
-							sysdate, 0, 0, 0, 0)
+							sysdate, 0, 0, 0, 0,
+							NVL(#{fb_content:VARCHAR}, EMPTY_CLOB()))
 
 	</insert>
 

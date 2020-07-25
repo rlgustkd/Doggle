@@ -10,5 +10,7 @@ public interface HospitalService {
 	public void saveImage(String saveFileName) throws Exception;
 	
 	public List<HospitalVO> getByteImage() throws Exception;
+	
+	public HospitalVO detailImage(HospitalVO hospitalVO) throws Exception;
 
 }

@@ -4,5 +4,84 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="replyMapper">
 
+<!-- 병원추천게시판 댓글 가져오기 -->
+<select id="h_replyinfo" resultType="com.doggle.vo.ReplyVO">
+	select b_no, r_no, p_no, user_id, r_content, use_flag, regdate
+	from h_reply
+	where p_no=#{p_no} and use_flag=1
+	order by r_no desc
+</select>
+
+<!-- 병원추천게시판 댓글 등록 -->
+<insert id="h_replywrite" parameterType="com.doggle.vo.ReplyVO">
+	insert into h_reply (b_no, r_no, p_no, user_id, r_content, use_flag, regdate)
+	values (5, r_no_seq.nextval, #{p_no}, #{user_id}, #{r_content}, 1, sysdate)
+</insert>
+
+<!-- 병원추천게시판 댓글 삭제 -->
+<update id="h_replydelete" parameterType="com.doggle.vo.ReplyVO">
+	delete from h_reply
+	where r_no = #{r_no}
+</update>
+
+<!-- 호텔추천게시판 댓글 가져오기 -->
+<select id="ht_replyinfo" resultType="com.doggle.vo.ReplyVO">
+	select b_no, r_no, p_no, user_id, r_content, use_flag, regdate
+	from ht_reply
+	where p_no=#{p_no} and use_flag=1
+	order by r_no desc
+</select>
+
+<!-- 호텔추천게시판 댓글 등록 -->
+<insert id="ht_replywrite" parameterType="com.doggle.vo.ReplyVO">
+	insert into ht_reply (b_no, r_no, p_no, user_id, r_content, use_flag, regdate)
+	values (3, r_no_seq.nextval, #{p_no}, #{user_id}, #{r_content}, 1, sysdate)
+</insert>
+
+<!-- 호텔추천게시판 댓글 삭제 -->
+<delete id="ht_replydelete" parameterType="com.doggle.vo.ReplyVO">
+	delete from ht_reply 
+	where r_no = #{r_no}
+</delete>
+
+<!-- 애견놀이터추천게시판 댓글 가져오기 -->
+<select id="w_replyinfo" resultType="com.doggle.vo.ReplyVO">
+	select b_no, r_no, p_no, user_id, r_content, use_flag, regdate
+	from w_reply
+	where p_no=#{p_no} and use_flag=1
+	order by r_no desc
+</select>
+
+<!-- 애견놀이터추천게시판 댓글 등록 -->
+<insert id="w_replywrite" parameterType="com.doggle.vo.ReplyVO">
+	insert into w_reply (b_no, r_no, p_no, user_id, r_content, use_flag, regdate)
+	values (9, r_no_seq.nextval, #{p_no}, #{user_id}, #{r_content}, 1, sysdate)
+</insert>
+
+<!-- 애견놀이터추천게시판 댓글 삭제 -->
+<delete id="w_replydelete" parameterType="com.doggle.vo.ReplyVO">
+	delete from w_reply 
+	where r_no = #{r_no}
+</delete>
+
+<!-- 애견샵추천게시판 댓글 가져오기 -->
+<select id="p_replyinfo" resultType="com.doggle.vo.ReplyVO">
+	select b_no, r_no, p_no, user_id, r_content, use_flag, regdate
+	from p_reply
+	where p_no=#{p_no} and use_flag=1
+	order by r_no desc
+</select>
+
+<!-- 애견샵추천게시판 댓글 등록 -->
+<insert id="p_replywrite" parameterType="com.doggle.vo.ReplyVO">
+	insert into p_reply (b_no, r_no, p_no, user_id, r_content, use_flag, regdate)
+	values (7, r_no_seq.nextval, #{p_no}, #{user_id}, #{r_content}, 1, sysdate)
+</insert>
+
+<!-- 애견샵추천게시판 댓글 삭제 -->
+<delete id="p_replydelete" parameterType="com.doggle.vo.ReplyVO">
+	delete from p_reply 
+	where r_no = #{r_no}
+</delete>
 
 </mapper>

@@ -1,6 +1,5 @@
 package com.doggle.vo;
 
-import java.sql.Date;
 
 public class PetshopVO {
 	private int b_no;
@@ -9,15 +8,9 @@ public class PetshopVO {
 	private String p_content;
 	private String lng;
 	private String lat;
-	private Date date;
+	private String phone;
 	private String p_photo;
 	private int use_flag;
-	@Override
-	public String toString() {
-		return "PetshopVO [b_no=" + b_no + ", p_no=" + p_no + ", p_title=" + p_title + ", p_content=" + p_content
-				+ ", lng=" + lng + ", lat=" + lat + ", date=" + date + ", p_photo=" + p_photo + ", use_flag=" + use_flag
-				+ "]";
-	}
 	public int getB_no() {
 		return b_no;
 	}
@@ -54,11 +47,11 @@ public class PetshopVO {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
-	public Date getDate() {
-		return date;
+	public String getPhone() {
+		return phone;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getP_photo() {
 		return p_photo;
@@ -72,4 +65,13 @@ public class PetshopVO {
 	public void setUse_flag(int use_flag) {
 		this.use_flag = use_flag;
 	}
+	@Override
+	public String toString() {
+		return "PetshopVO [b_no=" + b_no + ", p_no=" + p_no + ", p_title=" + p_title + ", p_content=" + p_content
+				+ ", lng=" + lng + ", lat=" + lat + ", phone=" + phone + ", p_photo=" + p_photo + ", use_flag="
+				+ use_flag + "]";
+	}
+	
+	
+	
 }
