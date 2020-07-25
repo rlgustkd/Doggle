@@ -57,118 +57,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">
 
-<style>
-        ul,
-        ol,
-        li {
-        float: right;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
 
-        ul.myMenu {}
-
-        ul.myMenu>li {
-            display: inline-block;
-            width: 80px;
-            padding: 5px 10px;
-            background: #fff;
-            text-align: center;
-        }
-
-        ul.myMenu>li ul.submenu {
-            display: none;
-            position: absolute;
-        }
-
-        ul,
-        ol,
-        li {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul.myMenu {}
-
-        ul.myMenu>li {
-            display: inline-block;
-            width: 80px;
-            padding: 5px 10px;
-            background: #fff;
-            text-align: center;
-            position: relative;
-        }
-
-        ul.myMenu>li ul.submenu {
-            /* display:none;*/
-            position: absolute;
-            top: 30px;
-            left: 0;
-        }
-
-        ul.myMenu>li ul.submenu>li {
-            display: inline-block;
-            width: 80px;
-            padding: 5px 10px;
-            background: #fff;
-            text-align: center;
-        }
-
-        ul.myMenu>li:hover ul.submenu {
-            display: block;
-        }
-    </style>
-    <style>
-        ul,
-        ol,
-        li {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul.myMenu {}
-
-        ul.myMenu>li {
-            display: inline-block;
-            width: 80px;
-            padding: 5px 10px;
-            background: #fff;
-            border: 1px solid #eee;
-            text-align: center;
-            position: relative;
-        }
-
-        ul.myMenu>li:hover {
-            background: #fff;
-        }
-
-        ul.myMenu>li ul.submenu {
-            display: none;
-            position: absolute;
-            top: 30px;
-            left: 0;
-        }
-
-        ul.myMenu>li:hover ul.submenu {
-            display: block;
-        }
-
-        ul.myMenu>li ul.submenu>li {
-            display: inline-block;
-            width: 80px;
-            padding: 5px 10px;
-            background: #eee;
-            border: 1px solid #eee;
-            text-align: center;
-        }
-
-        ul.myMenu>li ul.submenu>li:hover {
-            background: #fff;
-        }
-    </style>
 </head>
 <body>
 	<!-- Start of Topbar -->
@@ -246,7 +135,7 @@
 							<br>
 							<p>${pbposts.pb_content }</p>
 							<p>
-								<br> <i class="fa fa-eye" aria-hidden="true"></i>${pbposts.viewcnt } 
+								<br> <i class="fa fa-eye" aria-hidden="true"></i><span name="viewcnt">${pbposts.viewcnt }</span>
 								<i class="fa fa-heart" onclick="recommend();"></i><span name="rec">${pbposts.recommend }</span> 
 								<i class='fa fa-comment'></i> <span name="com">0</span> 
 							</p>
@@ -348,9 +237,21 @@
 
 		var p_no;
 		$('img[name=thumbnail]').click(function() {
-			
+
 			p_no = $(this).parent().attr("data-fancybox");
+
+			var user_id = $("div[name=caption" + p_no + "]").find(".your_id").val();
+
+			var writer_id = $("div[name=caption" + p_no + "]").find(".writer_id").val();
+
+			if(user_id != "" && user_id != null && writer_id != user_id) {
+				ajaxfunction2(p_no, "", "view");
+			}
+			else
+			
 			ajaxfunction(p_no, "", "", "");
+
+			
 
 		});
 
@@ -475,8 +376,10 @@
 						alert("신고가 접수되었습니다.");
 					}
 					else {
-						$("div[name=caption" + p_no + "]").find('span[name=rec]').text(msg);
-						$(".fancybox-caption__body").find('span[name=rec]').text(msg);
+						$("div[name=caption" + p_no + "]").find('span[name=rec]').text(msg[0]);
+						$(".fancybox-caption__body").find('span[name=rec]').text(msg[0]);
+						$("div[name=caption" + p_no + "]").find('span[name=viewcnt]').text(msg[1]);
+						$(".fancybox-caption__body").find('span[name=viewcnt]').text(msg[1]);
 					}
 				},
 
@@ -489,6 +392,7 @@
 			});
 
 		};
+
 
 		function delPost() {
 			var result = confirm('삭제하시겠습니까? 삭제하시면 복구할 수 없습니다.');

@@ -46,4 +46,16 @@ public class PhotoboardServiceImpl implements PhotoboardService {
 		dao.deletePost(pvo);
 	}
 
+
+	@Override
+	public int loadViewCount(int p_no) throws Exception {
+		return dao.loadViewCount(p_no);
+	}
+
+
+	@Override
+	public void increaseViewCount(int p_no) throws Exception {
+		dao.increaseViewCount(p_no);
+	}
+
 }

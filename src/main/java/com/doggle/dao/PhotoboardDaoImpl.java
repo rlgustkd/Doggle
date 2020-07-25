@@ -40,4 +40,14 @@ public class PhotoboardDaoImpl implements PhotoboardDao {
 		sqlSession.update("photoboardMapper.deletePost", pvo);
 	}
 
+	@Override
+	public int loadViewCount(int p_no) throws Exception {
+		return sqlSession.selectOne("photoboardMapper.loadViewCount", p_no);
+	}
+
+	@Override
+	public void increaseViewCount(int p_no) throws Exception {
+		sqlSession.update("photoboardMapper.increaseViewCount", p_no);
+	}
+
 }

@@ -217,14 +217,25 @@ public class StoryController {
 				return false;
 			} else {
 				recommendboardservice.addRec(rvo);
-				int rnum = recommendboardservice.loadRec(b_no, p_no);
+				int recommend = recommendboardservice.loadRec(b_no, p_no);
 				PhotoboardVO pvo = new PhotoboardVO();
 				pvo.setP_no(p_no);
-				pvo.setRecommend(rnum);
+				pvo.setRecommend(recommend);
 				photoboardservice.updateRecommend(pvo);
-				
-				return rnum;
+				int viewcnt = photoboardservice.loadViewCount(p_no);
+				int[] arr = new int[] {recommend, viewcnt};
+				return arr;
 			}
+		}
+		else if (flag.equals("view")) {
+			int recommend = recommendboardservice.loadRec(b_no, p_no);
+			
+			
+			photoboardservice.increaseViewCount(p_no);
+			int viewcnt = photoboardservice.loadViewCount(p_no);
+			int[] arr = new int[] {recommend, viewcnt};
+			
+			return arr;
 		}
 		else {
 			ReportboardVO rvo = new ReportboardVO();

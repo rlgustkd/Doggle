@@ -15,4 +15,8 @@ public interface PhotoboardService {
 	public void updateReport(PhotoboardVO pvo) throws Exception;
 
 	public void deletePost(PhotoboardVO pvo) throws Exception;
+
+	public int loadViewCount(int p_no) throws Exception;
+
+	public void increaseViewCount(int p_no) throws Exception;
 }

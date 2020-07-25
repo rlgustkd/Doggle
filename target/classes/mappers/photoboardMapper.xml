@@ -35,4 +35,16 @@ use_flag = 1
 WHERE
 p_no = #{p_no}
 </update>
+<select id="loadViewCount" resultType="Int">
+	select VIEWCNT from PHOTOBOARD where p_no = #{p_no}
+</select>
+<update id="increaseViewCount">
+UPDATE PHOTOBOARD
+SET
+VIEWCNT = VIEWCNT + 1
+WHERE
+p_no = #{p_no}
+</update>
+
+
 </mapper>
