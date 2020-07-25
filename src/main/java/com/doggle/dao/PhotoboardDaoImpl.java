@@ -25,4 +25,19 @@ public class PhotoboardDaoImpl implements PhotoboardDao {
 		sqlSession.insert("photoboardMapper.uploadPost", pvo);
 	}
 
+	@Override
+	public void updateRecommend(PhotoboardVO pvo) {
+		sqlSession.update("photoboardMapper.updateRecommend", pvo);
+	}
+
+	@Override
+	public void updateReport(PhotoboardVO pvo) {
+		sqlSession.update("photoboardMapper.updateReport", pvo);
+	}
+
+	@Override
+	public void deletePost(PhotoboardVO pvo) throws Exception {
+		sqlSession.update("photoboardMapper.deletePost", pvo);
+	}
+
 }

@@ -28,4 +28,22 @@ public class PhotoboardServiceImpl implements PhotoboardService {
 		dao.uploadPost(pvo);
 	}
 
+
+	@Override
+	public void updateRecommend(PhotoboardVO pvo) throws Exception {
+		dao.updateRecommend(pvo);
+	}
+
+
+	@Override
+	public void updateReport(PhotoboardVO pvo) throws Exception {
+		dao.updateReport(pvo);
+	}
+
+
+	@Override
+	public void deletePost(PhotoboardVO pvo) throws Exception {
+		dao.deletePost(pvo);
+	}
+
 }

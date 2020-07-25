@@ -30,9 +30,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.doggle.service.HospitalService;
 import com.doggle.service.PhotoboardService;
 import com.doggle.service.Photoboard_ReplyService;
+import com.doggle.service.RecommendboardService;
+import com.doggle.service.ReportboardService;
 import com.doggle.vo.MemberVO;
 import com.doggle.vo.PhotoboardVO;
 import com.doggle.vo.Photoboard_ReplyVO;
+import com.doggle.vo.RecommendboardVO;
+import com.doggle.vo.ReportboardVO;
 
 import net.sf.json.JSONArray;
 
@@ -44,6 +48,10 @@ public class StoryController {
 	PhotoboardService photoboardservice;
 	@Inject
 	Photoboard_ReplyService photoboardreplyservice;
+	@Inject
+	RecommendboardService recommendboardservice;
+	@Inject
+	ReportboardService reportboardservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoryController.class);
 	
@@ -139,7 +147,22 @@ public class StoryController {
         
 		return "redirect:gallery";
 	}
-	
+
+	@RequestMapping(value = "/gallery", method = RequestMethod.DELETE, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String galdel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("게시물삭제");
+		String resultMsg = "항목이 삭제 되었습니다.";
+		PhotoboardVO pvo = new PhotoboardVO();
+		String pno = request.getParameter("p_no");
+		int p_no = Integer.parseInt(pno);
+		
+		pvo.setP_no(p_no);
+		photoboardservice.deletePost(pvo);
+		
+		logger.info("성공@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		return resultMsg;
+	}
 	
 	@RequestMapping(value = "gallery", method = RequestMethod.PUT, produces = "application/json; charset=utf8")
 	public @ResponseBody Object galput(Model model, HttpServletRequest request) throws Exception {
@@ -157,10 +180,6 @@ public class StoryController {
 			photoboardreplyservice.deleteComment(r_no);
 		}
 		
-		logger.info(pno + "~~" + r_content + "~~" + user_id);
-		
-		
-
 		if((r_content != "") && (user_id != "")) {
 			logger.info("stop");
 			Photoboard_ReplyVO newcomment = new Photoboard_ReplyVO();
@@ -173,10 +192,63 @@ public class StoryController {
 		
 		
 		List<Photoboard_ReplyVO> loadreplies = photoboardreplyservice.loadReplies(p_no);
-		
-		
-		
 		return loadreplies;
+	}
+	
+	@RequestMapping(value = "gallery", method = RequestMethod.PATCH, produces = "application/json; charset=utf8")
+	public @ResponseBody Object galpat(Model model, HttpServletRequest request) throws Exception {
+		logger.info("galleryPAT");
+		
+		String pno = request.getParameter("p_no");
+		String user_id = request.getParameter("user_id");
+		int p_no = Integer.parseInt(pno);			
+		int b_no = 2;
+		String flag = request.getParameter("flag");
+		
+		if(flag.equals("rec")) {
+			RecommendboardVO rvo = new RecommendboardVO();
+			rvo.setB_no(b_no);
+			rvo.setUser_id(user_id);
+			rvo.setP_no(p_no);
+			rvo.setUse_flag(0);
+			int check = recommendboardservice.checkRec(rvo);
+			
+			if(check != 0) {
+				return false;
+			} else {
+				recommendboardservice.addRec(rvo);
+				int rnum = recommendboardservice.loadRec(b_no, p_no);
+				PhotoboardVO pvo = new PhotoboardVO();
+				pvo.setP_no(p_no);
+				pvo.setRecommend(rnum);
+				photoboardservice.updateRecommend(pvo);
+				
+				return rnum;
+			}
+		}
+		else {
+			ReportboardVO rvo = new ReportboardVO();
+			rvo.setB_no(b_no);
+			rvo.setUser_id(user_id);
+			rvo.setP_no(p_no);
+			rvo.setUse_flag(0);
+			int check = reportboardservice.checkRep(rvo);
+			
+			if(check != 0) {
+				return false;
+			} else {
+				reportboardservice.addRep(rvo);
+				int rnum = reportboardservice.loadRep(b_no, p_no);
+				PhotoboardVO pvo = new PhotoboardVO();
+				pvo.setP_no(p_no);
+				pvo.setReportcnt(rnum);
+				photoboardservice.updateReport(pvo);
+				
+				return true;
+			}
+		}
+		
+		
 	}
 	
 }

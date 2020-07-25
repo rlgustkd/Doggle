@@ -58,10 +58,117 @@
 	href="${pageContext.request.contextPath}/resources/css/custom/gallery.css">
 
 <style>
-.delPost {
-	float: right;
-}
-</style>
+        ul,
+        ol,
+        li {
+        float: right;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.myMenu {}
+
+        ul.myMenu>li {
+            display: inline-block;
+            width: 80px;
+            padding: 5px 10px;
+            background: #fff;
+            text-align: center;
+        }
+
+        ul.myMenu>li ul.submenu {
+            display: none;
+            position: absolute;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.myMenu {}
+
+        ul.myMenu>li {
+            display: inline-block;
+            width: 80px;
+            padding: 5px 10px;
+            background: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        ul.myMenu>li ul.submenu {
+            /* display:none;*/
+            position: absolute;
+            top: 30px;
+            left: 0;
+        }
+
+        ul.myMenu>li ul.submenu>li {
+            display: inline-block;
+            width: 80px;
+            padding: 5px 10px;
+            background: #fff;
+            text-align: center;
+        }
+
+        ul.myMenu>li:hover ul.submenu {
+            display: block;
+        }
+    </style>
+    <style>
+        ul,
+        ol,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.myMenu {}
+
+        ul.myMenu>li {
+            display: inline-block;
+            width: 80px;
+            padding: 5px 10px;
+            background: #fff;
+            border: 1px solid #eee;
+            text-align: center;
+            position: relative;
+        }
+
+        ul.myMenu>li:hover {
+            background: #fff;
+        }
+
+        ul.myMenu>li ul.submenu {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+        }
+
+        ul.myMenu>li:hover ul.submenu {
+            display: block;
+        }
+
+        ul.myMenu>li ul.submenu>li {
+            display: inline-block;
+            width: 80px;
+            padding: 5px 10px;
+            background: #eee;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        ul.myMenu>li ul.submenu>li:hover {
+            background: #fff;
+        }
+    </style>
 </head>
 <body>
 	<!-- Start of Topbar -->
@@ -101,17 +208,12 @@
 						<c:choose>
 
 							<c:when test="${status.index == 0 }">
-								<a
-									href="${pageContext.request.contextPath}/resources/images/${temp}"
-									data-fancybox="${pbposts.p_no}"> <img
-									src="${pageContext.request.contextPath}/resources/images/${temp}"
-									name="thumbnail" style="width: 240px; height: 240px;" />
+								<a href="${pageContext.request.contextPath}/resources/images/${temp}" data-fancybox="${pbposts.p_no}"> 
+								<img src="${pageContext.request.contextPath}/resources/images/${temp}" name="thumbnail" style="width: 240px; height: 240px;" />
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a
-									href="${pageContext.request.contextPath}/resources/images/${temp}"
-									data-fancybox="${pbposts.p_no}"></a>
+								<a href="${pageContext.request.contextPath}/resources/images/${temp}" data-fancybox="${pbposts.p_no}"></a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -119,24 +221,35 @@
 					<div class="caption" name="caption${pbposts.p_no}">
 						<br>
 						<div class="user_pic">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/${pbposts.pic}"
-								id="profile">
+							<img src="${pageContext.request.contextPath}/resources/images/${pbposts.pic}" id="profile">
 						</div>
-						<span class="rep_userid">${pbposts.nickname }</span><span
-							style="float: right;">${pbposts.regdate}</span>
+						<input type="hidden" class="writer_id" value="${pbposts.user_id }">
+						<span class="rep_userid">${pbposts.nickname }</span>
+						<span style="float: right;">${pbposts.regdate}</span>
+						<ul class="myMenu"> 
+							<li class="menu2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+								<c:if test="${sessionScope.user.user_id eq pbposts.user_id}">
+								<ul class="writer submenu">
+									<li onclick="delPost();">삭제</li>
+								</ul>
+								</c:if>
+								<c:if test="${pbposts.user_id ne sessionScope.user.user_id}">
+								<ul class="reader submenu">
+								<li onclick="report();">신고</li>
+								</ul>
+								</c:if>
+							</li>
+						</ul>
 						<div class="reply_content">
 							<br>
 							<p>${pbposts.pb_title }</p>
 							<br>
 							<p>${pbposts.pb_content }</p>
 							<p>
-								<br> <i class="fa fa-eye" aria-hidden="true"></i>
-								${pbposts.viewcnt } <i class="fa fa-heart"></i>
-								${pbposts.recommend } <i class='fa fa-comment'></i> <span
-									name="com">0</span> <span class="delPost">삭제하기</span>
+								<br> <i class="fa fa-eye" aria-hidden="true"></i>${pbposts.viewcnt } 
+								<i class="fa fa-heart" onclick="recommend();"></i><span name="rec">${pbposts.recommend }</span> 
+								<i class='fa fa-comment'></i> <span name="com">0</span> 
 							</p>
-
 						</div>
 						<hr>
 						<!-- 댓글 창 시작 -->
@@ -171,25 +284,21 @@
 						<c:set var="user" value="${sessionScope.user}" />
 						<c:if test="${user != null }">
 							<div class="user_pic">
-								<img
-									src="${pageContext.request.contextPath}/resources/images/${sessionScope.user.pic}">
+								<img src="${pageContext.request.contextPath}/resources/images/${sessionScope.user.pic}">
 							</div>
 							<div class="input_rep">
-								<input type="hidden" class="your_id" name="${pbposts.p_no }"
-									value="${sessionScope.user.user_id }"> <input
-									type="text" id="inputReply" name="inputReply" value=""
-									placeholder="Add a comment..."> <input type="button"
-									value="게시" id="inputsubmit" name="inputsubmit">
+								<input type="hidden" class="your_id" name="${pbposts.p_no }" value="${sessionScope.user.user_id }"> 
+								<input type="text" id="inputReply" name="inputReply" value="" placeholder="Add a comment..."> 
+								<input type="button" value="게시" id="inputsubmit" name="inputsubmit">
 							</div>
 						</c:if>
 						<c:if test="${user == null}">
 							<div class="user_pic">
-								<img
-									src="${pageContext.request.contextPath}/resources/images/profile.png">
+								<img src="${pageContext.request.contextPath}/resources/images/profile.png">
 							</div>
 							<div class="input_rep">
-								<input type="text" id="inputReply" value=""
-									placeholder="댓글을 등록하려면 로그인하세요.." onfocus=this.blur(); readonly>
+								<input type="hidden" class="your_id" value="">
+								<input type="text" id="inputReply" value="" placeholder="댓글을 등록하려면 로그인하세요.." onfocus=this.blur(); readonly>
 
 							</div>
 						</c:if>
@@ -199,11 +308,6 @@
 			</c:forEach>
 		</div>
 	</section>
-
-
-
-
-
 	<!-- End of main -->
 
 	<!-- Start of footer -->
@@ -241,14 +345,42 @@
 
 
 	<script>
+
 		var p_no;
 		$('img[name=thumbnail]').click(function() {
-
+			
 			p_no = $(this).parent().attr("data-fancybox");
-
 			ajaxfunction(p_no, "", "", "");
 
 		});
+
+		function recommend() {
+			var user_id = $("div[name=caption" + p_no + "]").find(".your_id").val();
+			var writer_id = $("div[name=caption" + p_no + "]").find(".writer_id").val();
+			
+			if(user_id == "" || user_id == null) {
+				alert("추천하려면 로그인하세요!");
+			}
+			else if (user_id == writer_id) {
+				alert("스스로 추천할 수 없습니다.");
+			}
+			else {
+				ajaxfunction2(p_no, user_id, "rec");
+			}
+			
+		}
+
+		function report() {
+			var user_id = $("div[name=caption" + p_no + "]").find(".your_id").val();
+			
+			if(user_id == "" || user_id == null) {
+				alert("신고하려면 로그인하세요!");
+			} else {
+				var user_id = $("div[name=caption" + p_no + "]").find(".your_id").val();
+				ajaxfunction2(p_no, user_id, "rep");
+			}
+		}
+		
 		$(function() {
 			$(document).on('click', '#inputsubmit', function() {
 				var r_userId = $(this).parent().children(".your_id").val();
@@ -289,8 +421,9 @@
 						//Ajax 성공시 호출 
 						success : function(msg) {
 
-							$('span[name=com]').text(msg.length);
-							$('.reply-list').empty();
+							$("div[name=caption" + p_no + "]").find('span[name=com]').text(msg.length);
+							$("div[name=caption" + p_no + "]").find('.reply-list').empty();
+							$(".fancybox-caption__body").find('.reply-list').empty();
 							for (var i = 0; i < msg.length; i++) {
 								var html = "<div style='display: flex;'><div class='user_pic' style='float:left;'><img src=" 
 						+ "${pageContext.request.contextPath}/resources/images/" + msg[i].pic + "></div><div class='reply_content'><span class='rep_userid'>"
@@ -308,27 +441,80 @@
 									html = html + "</p></div></div><hr>";
 								}
 
-								$(".reply-list").append(html);
+								$("div[name=caption" + p_no + "]").find('.reply-list').append(html);
+								$(".fancybox-caption__body").find('.reply-list').append(html);
 							}
 
 						},
 
 						//Ajax 실패시 호출
 						error : function(jqXHR, textStatus, errorThrown) {
-							console.log("jqXHR : " + jqXHR + "textStatus : "
-									+ textStatus + "errorThrown : "
-									+ errorThrown);
+							console.log("jqXHR : " + jqXHR + "textStatus : " + textStatus + "errorThrown : " + errorThrown);
 						}
 					});
 
 		};
+		
+		function ajaxfunction2(p_no, user_id, flag) {
+			$.ajax({
+				url : "gallery", // 전송 URL
+				type : 'PATCH', // GET or POST 방식
+				traditional : true,
+				dataType : 'json',
+				data : {
+					p_no : p_no, // 보내고자 하는 data 변수 설정
+					user_id : user_id,
+					flag : flag
+				},
+						//Ajax 성공시 호출 
+				success : function(msg) {
+					if(msg == false) {
+						alert("추천/신고는 한 번만 할 수 있습니다.");
+					}
+					else if(msg == true) {
+						alert("신고가 접수되었습니다.");
+					}
+					else {
+						$("div[name=caption" + p_no + "]").find('span[name=rec]').text(msg);
+						$(".fancybox-caption__body").find('span[name=rec]').text(msg);
+					}
+				},
 
-		$(document).on('click', ".fancybox-button fancybox-button", function() {
-			alert("dada");
-		});
+				//Ajax 실패시 호출
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log("jqXHR : " + jqXHR + "textStatus : "
+							+ textStatus + "errorThrown : "
+							+ errorThrown);
+					}
+			});
+
+		};
+
+		function delPost() {
+			var result = confirm('삭제하시겠습니까? 삭제하시면 복구할 수 없습니다.');
+			if (result) {
+				$.ajax({
+					url : "gallery", // 전송 URL
+					type : 'DELETE', // GET or POST 방식
+					traditional : true,
+					data : {
+						p_no : p_no // 보내고자 하는 data 변수 설정
+					},
+							//Ajax 성공시 호출 
+					success : function(msg) {
+						alert(msg);
+						window.location.href = "gallery";					
+					},
+
+					//Ajax 실패시 호출
+					error : function(jqXHR, textStatus, errorThrown) {
+						console.log("jqXHR : " + jqXHR + "textStatus : " + textStatus + "errorThrown : " + errorThrown);
+					}
+				});
+			}	
+		};
 
 		// Initialise fancybox with custom settings
-
 		$('[data-fancybox]')
 				.fancybox(
 						{
@@ -342,10 +528,10 @@
 							// Display only these two buttons
 							buttons : [ 'close' ],
 							// Custom caption content
-							/* caption : function(instance, obj) {
+							caption : function(instance, obj) {
 								return '<div><p class="fancy-nav"><a data-fancybox-prev title="Previous" tabindex="1">&lsaquo;</a> <a data-fancybox-next title="Next" tabindex="2">&rsaquo;</a> &nbsp; <span data-fancybox-index></span> of <span data-fancybox-count></span> images</p>'
 										+ $(this).parent().find('.caption').html() + '</div>';
-							} */
+							},
 
 							onInit : function(instance) {
 
@@ -356,20 +542,11 @@
 							},
 							afterLoad : function(previous, current) {
 								if (previous) {
-									/*
-									$.fancybox.caption;
-									
-									$.fancybox.getInstance().updateControls();
-									$.fancybox.getInstance().update();
-									*/
-									
 									$.fancybox.getInstance().current.opts.$orig.data('caption', 'New caption');
 									$.fancybox.getInstance().group[ $.fancybox.getInstance().current.index ].caption = 'New caption';
 									$.fancybox.getInstance().current.opts.caption = '<div><p class="fancy-nav"><a data-fancybox-prev title="Previous" tabindex="1">&lsaquo;</a> <a data-fancybox-next title="Next" tabindex="2">&rsaquo;</a> &nbsp; <span data-fancybox-index></span> of <span data-fancybox-count></span> images</p>'
 										+ $("div[name=caption" + p_no + "]").html() + '</div>';
 									$.fancybox.getInstance().updateControls();
-									//ajaxfunction(p_no, "", "", "");
-
 								}
 							}
 

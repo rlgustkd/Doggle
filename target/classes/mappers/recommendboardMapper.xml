@@ -3,6 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recommendboardMapper">
-
+<select id="checkRec" resultType="Int">
+    SELECT count(*) 
+    FROM recommendboard 
+	where b_no = #{b_no} and p_no = #{p_no} and user_id = #{user_id}
+</select>
+<select id="loadRec" resultType="Int">
+    SELECT count(*) 
+    FROM recommendboard 
+	where b_no = 2 and p_no = #{p_no}
+</select>
+<insert id="addRec">
+	INSERT INTO recommendboard (b_no, p_no, user_id, use_flag) 
+	VALUES (#{b_no}, #{p_no}, #{user_id}, #{use_flag}) 
+</insert>
 
 </mapper>

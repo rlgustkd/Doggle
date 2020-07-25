@@ -9,4 +9,10 @@ public interface PhotoboardService {
 	public List<PhotoboardVO> loadPosts() throws Exception;
 	
 	public void uploadPost(PhotoboardVO pvo) throws Exception;
+
+	public void updateRecommend(PhotoboardVO pvo) throws Exception;
+
+	public void updateReport(PhotoboardVO pvo) throws Exception;
+
+	public void deletePost(PhotoboardVO pvo) throws Exception;
 }
