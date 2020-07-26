@@ -77,20 +77,6 @@ public class InfoController {
 			logger.info(hospitalinfo.get(i).getH_photo());
 		}
 		
-		
-		
-//		List<InfoBoardVO> infoboardVO = infoboardService.list();
-//		logger.info("hi");
-//		for(int i = 0; i < FreeboardStory.size(); i++) {
-//			logger.info(FreeboardStory.get(i).getFb_title());
-//		}
-//		
-//		model.addAttribute("FreeboardStory", FreeboardStory);
-		
-		
-		
-		
-		
 		return "info/hospital";
 	}
 	
@@ -395,10 +381,4 @@ public class InfoController {
 		
 		return obj;
 	}
-
-
-
-	
-	
-	
 }
