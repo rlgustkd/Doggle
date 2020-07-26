@@ -43,7 +43,7 @@ public class FreeboardDaoImpl implements FreeboardDao {
 		//삭제
 	@Override
 	public void delete(int p_no) throws Exception {
-		sql.delete(namespace + ".delete", p_no);
+		sql.update("freeboardMapper.delete", p_no);
 	}
 	
 		//목록

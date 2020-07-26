@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="infoboardMapper">
+
+<insert id="insertClobTable" parameterType="map">
+
+		INSERT INTO info_board (b_no, 
+								p_no, 
+								user_id, 
+								info_title,  
+								regdate,
+								viewcnt, 
+								recommend, 
+								reportcnt, 
+								use_flag,
+								info_content) 
+								
+					VALUES (#{b_no}, 
+							b_no_seq.nextval, 
+							#{user_id}, 
+							#{info_title}, 
+							sysdate, 0, 0, 0, 0,
+							NVL(#{info_content:VARCHAR}, EMPTY_CLOB()))
+
+	</insert>
+
+
+
+	
+	<select id="read" resultType="com.doggle.vo.InfoboardVO">
+		SELECT *
+		FROM INFO_BOARD WHERE p_no = #{p_no}
+	</select>
+	
+	
+	<select id="list" resultType="com.doggle.vo.InfoboardVO">
+		SELECT B_NO, P_NO, USER_ID, INFO_TITLE, INFO_CONTENT, REGDATE,VIEWCNT,RECOMMEND,REPORTCNT,USE_FLAG
+		FROM INFO_BOARD WHERE USE_FLAG = 0 and b_no = #{b_no} order by p_no desc
+	</select>
+
+
+
+
+</mapper>

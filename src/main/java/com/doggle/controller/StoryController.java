@@ -80,13 +80,25 @@ public class StoryController {
 			
 			// 글 조회
 		@RequestMapping(value = "/detailStoryView", method = RequestMethod.GET)
-		public String getRead(@RequestParam("p_no") int p_no, Model model) throws Exception {
+		public String getRead(@RequestParam("p_no") int p_no, Model model, HttpSession session) throws Exception {
 			logger.info("get read");
 			
 			FreeboardVO vo = freeboardService.read(p_no);
 			model.addAttribute("read", vo);
 			
 			return "story/freeboard/detailStoryView";
+			
+			
+
+//			MemberVO memberVO = (MemberVO)session.getAttribute("user"); 
+//			String user_id = memberVO.getUser_id();  
+			//		user_id 와 글작성자가 일치하면 버튼보이게 구현할것. (수정, 삭제)
+			
+//			
+//			InfoboardVO vo = InfoboardService.read
+//			
+//			
+			
 		}
 		
 			// 글 삭제
@@ -107,16 +119,19 @@ public class StoryController {
 			return "redirect:/story/freeboard/detailStoryView";
 		}
 		
-			//글 삭제 POST
-		@RequestMapping(value = "/delete", method = RequestMethod.POST)
-		public String postDelete(@RequestParam("p_no") int p_no) throws Exception {
-			logger.info("post delete");
-			
-			freeboardService.delete(p_no);
-			
-			return "redirect:story/freeboard/detailStoryView";
-		}
-		
+		 //글 삭제 DELETE
+	      @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/text; charset=utf8")
+	      @ResponseBody
+	      public String postDelete(HttpServletRequest request) throws Exception {
+	         logger.info("post delete");
+	         String resultMsg = "항목이 삭제 되었습니다.";
+	         String pno = request.getParameter("p_no");
+	         int p_no = Integer.parseInt(pno);
+	         
+	         freeboardService.delete(p_no);
+
+	         return resultMsg;
+	      }
 		
 
 	@RequestMapping(value = "/freeboard/upload", method = RequestMethod.GET)
@@ -165,14 +180,14 @@ public class StoryController {
 		model.addAttribute("pbposts", pbposts);
 		model.addAttribute("replies", loadAllreplies);
 		
-		return "story/gallery";
+		return "story/gallery/gallery";
 	}
 		
 	@RequestMapping(value = "/galleryUpload", method = RequestMethod.GET)
 	public String galuploadget() throws Exception {
 		logger.info("galleryUploadGet");
 		
-		return "story/gallery_upload";
+		return "story/gallery/gallery_upload";
 	}
 	
 	@RequestMapping(value = "/gallery", method = RequestMethod.POST)

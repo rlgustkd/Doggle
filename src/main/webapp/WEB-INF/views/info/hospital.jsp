@@ -123,7 +123,8 @@
 
 
 				<!-- .accordion-item -->
-
+				
+				<input type="hidden" name="b_no" value=6>
 				<div class="accordion-item" style="width: 100%;">
 					<h3 class="mb-0 heading">
 						<a class="btn-block" id="toggle" data-toggle="collapse"
@@ -176,35 +177,37 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${FreeboardStory }" var="FreeboardStory">
+										<c:forEach items="${infoboardStory }" var="infoboardStory">
 											<tr>
-												<td>${FreeboardStory.p_no }</td>
+												<td>${infoboardStory.p_no }</td>
 												<td><a
-													href="../story/detailStoryView?p_no=${FreeboardStory.p_no }">${FreeboardStory.fb_title }</a></td>
-												<td>${FreeboardStory.user_id }</td>
-												<td>${FreeboardStory.regdate }</td>
-												<td>${FreeboardStory.viewcnt }</td>
-												<td>${FreeboardStory.recommend }</td>
+													href="../info/detailInfoView?p_no=${infoboardStory.p_no }">${infoboardStory.info_title }</a></td>
+												<td>${infoboardStory.user_id }</td>
+												<td>${infoboardStory.regdate }</td>
+												<td>${infoboardStory.viewcnt }</td>
+												<td>${infoboardStory.recommend }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-								<form action="../story/freeboard.jsp" method="get"
+								<!-- <form action="../story/freeboard.jsp" method="get"
 									class="form-inline my-2 my-lg-0">
 									<input type="text" name="search" class="form-control mr-sm-2"
 										type="search" placeholder="검색어를 입력하세요.">
 									<button class="btn btn-outline-success my-2 my-sm-0"
 										type="submit">검색</button>
-								</form>
+								</form> -->
 
 								<%
 									String context = request.getContextPath();
 								%>
-								<form action="freeboard/upload" role="form" autocomplete="off"
+								<form action="<%=context %>/info/upload" role="form" autocomplete="off"
 									method='GET'>
+									<input type="hidden" name="b_no" value="6">
 									<div class="inputArea">
-										<button type="submit" id="register_Btn"
-											class="btn btn-primary">글쓰기</button>
+										<c:if test= "${sessionScope.user.user_id != null }" >
+											<button type="submit" id="register_Btn" class="btn btn-primary">글쓰기</button>
+										</c:if>
 									</div>
 								</form>
 

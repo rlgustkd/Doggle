@@ -56,7 +56,7 @@
 
 		<div class="inputArea">
 			<label for="content">내용</label>
-			<div rows="5" cols="50" id="content" contentEditable="true" style=" height : 300px; border : 1px solid black;">
+			<div rows="5" cols="50" id="content" contentEditable="true" style=" min-height : 300px; height : height:auto; border : 1px solid black; overflow:hidden;">
 			</div>
 		</div>
 
@@ -123,11 +123,9 @@
 			/* String id = request.getParameter("user_id"); */
 			
 			var abc = $('#content').html();
-			alert(abc);
 			
 			document.getElementById('fb_content').setAttribute('value', abc);
 			var a = document.getElementById('fb_content').value;
-			alert(a);
 			document.fbform.submit();
 		});
 			

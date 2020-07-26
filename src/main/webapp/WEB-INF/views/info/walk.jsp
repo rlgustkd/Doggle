@@ -127,60 +127,73 @@
 
 				<div class="accordion-item" style="width: 100%;">
 					<h3 class="mb-0 heading">
-						<a class="btn-block" data-toggle="collapse" href="#collapseSeven" role="button" aria-expanded="false" aria-controls="collapseSeven" style="display: inline;">애견 놀이터 게시판<span class="icon"></span>
+						<a class="btn-block" data-toggle="collapse" href="#collapseSeven"
+							role="button" aria-expanded="false" aria-controls="collapseSeven"
+							style="display: inline;">동물 병원 게시판<span class="icon"></span>
 						</a>
 					</h3>
-					<div id="collapseSeven" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>날짜</th>
-									<th>조회수</th>
-									<th>추천수</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>제목</td>
-									<td>writer</td>
-									<td>regdate</td>
-									<td>viewcnt</td>
-									<td>recommend</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>제목</td>
-									<td>writer</td>
-									<td>regdate</td>
-									<td>viewcnt</td>
-									<td>recommend</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>제목</td>
-									<td>writer</td>
-									<td>regdate</td>
-									<td>viewcnt</td>
-									<td>recommend</td>
-								</tr>
-							</tbody>
+					<div id="collapseSeven" class="collapse"
+						aria-labelledby="headingOne" data-parent="#accordion">
 
-						</table>
-						<hr />
-						<a class="btn btn-primary pull-right">글쓰기</a>
-						<div class="text-center">
-							<ul class="pagination">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-							</ul>
-						</div>
+
+
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>제목</th>
+											<th>작성자</th>
+											<th>날짜</th>
+											<th>조회수</th>
+											<th>추천수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${infoboardStory }" var="infoboardStory">
+											<tr>
+												<td>${infoboardStory.p_no }</td>
+												<td><a
+													href="../info/detailInfoView?p_no=${infoboardStory.p_no }">${infoboardStory.info_title }</a></td>
+												<td>${infoboardStory.user_id }</td>
+												<td>${infoboardStory.regdate }</td>
+												<td>${infoboardStory.viewcnt }</td>
+												<td>${infoboardStory.recommend }</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								<!-- <form action="../story/freeboard.jsp" method="get"
+									class="form-inline my-2 my-lg-0">
+									<input type="text" name="search" class="form-control mr-sm-2"
+										type="search" placeholder="검색어를 입력하세요.">
+									<button class="btn btn-outline-success my-2 my-sm-0"
+										type="submit">검색</button>
+								</form> -->
+
+								<%
+									String context = request.getContextPath();
+								%>
+								<form action="<%=context %>/info/upload" role="form" autocomplete="off"
+									method='GET'>
+									<input type="hidden" name="b_no" value="10">
+									<div class="inputArea">
+										<c:if test ="${sessionScope.user.user_id != null }">
+											<button type="submit" id="register_Btn" class="btn btn-primary">글쓰기</button>
+										</c:if>
+									</div>
+								</form>
+
+								<div class="text-center">
+									<ul class="pagination">
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+									</ul>
+								</div>
+
+
 						<!-- collapse 내부 section -->
 
 					</div>

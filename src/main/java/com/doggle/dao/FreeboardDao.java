@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.doggle.vo.FreeboardVO;
+import com.doggle.vo.InfoboardVO;
 
 public interface FreeboardDao {
 
@@ -25,6 +26,7 @@ public interface FreeboardDao {
 
 	// 목록
 	public List<FreeboardVO> list() throws Exception;
+
 
 	// 추천하기 넣어야함.
 

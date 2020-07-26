@@ -38,7 +38,7 @@
 								fb_content) 
 								
 					VALUES (1, 
-							b_no_seq.nextval, 
+							d_p_no_seq.nextval, 
 							#{user_id}, 
 							#{fb_title}, 
 							sysdate, 0, 0, 0, 0,
@@ -68,11 +68,11 @@
 		where p_no = #{p_no}
 	</update>
 	
-	<!-- 삭제 -->
-	<delete id="delete">
-	delete from FREEBOARD
-	where p_no = #{p_no}
-	</delete>
-	
+<!-- 삭제 -->
+   <update id="delete">
+   update FREEBOARD set
+   use_flag = 1
+   where p_no = #{p_no}
+   </update>
 	
 </mapper>

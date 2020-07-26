@@ -84,7 +84,13 @@ public class FreeboardVO {
 	public void setUse_flag(int use_flag) {
 		this.use_flag = use_flag;
 	}
+	
 
-	
-	
+	@Override
+	public String toString() {
+		return "FreeboardVO [b_no=" + b_no + ", p_no=" + p_no + ", user_id=" + user_id + ", fb_title=" + fb_title
+				+ ", fb_content=" + fb_content + ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", recommend="
+				+ recommend + ", reportcnt=" + reportcnt + ", use_flag= " + use_flag + "]";
+	}
+
 }

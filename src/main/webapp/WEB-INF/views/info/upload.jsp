@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Doggle</title>
     <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
-<title>자유게시판 글 등록</title>
+<title>글 등록</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
@@ -24,7 +28,7 @@
 </head>
     	<!-- Start of Topbar -->
 	
-<%@include file="../../nav/topbar.jsp"%>
+<%@include file="../nav/topbar.jsp"%>
     
     <!-- End of Topbar -->
   	<!-- Start of main -->
@@ -44,19 +48,22 @@
 	<%
 		String context = request.getContextPath();
 	%>
-	<form action="<%=context%>/story/freeboard/upload" role="form"
+	<form action="<%=context%>/info/upload" role="form"
 		method="post" autocomplete="off" enctype="multipart/form-data"
 		name="fbform">
-
+		
+		<input type="hidden" name="b_no" value=${b_no} >
+		
+								
 		<div class="inputArea">
-			<label for="fb_title">제목</label> 
-			<input type="text" id="fb_title" name="fb_title" />
+			<label for="info_title">제목</label> 
+			<input type="text" id="info_title" name="info_title" />
 		</div>
 
 
 		<div class="inputArea">
 			<label for="content">내용</label>
-			<div rows="5" cols="50" id="content" contentEditable="true" style=" height : 300px; border : 1px solid black;">
+			<div rows="5" cols="50" id="content" contentEditable="true" style=" min-height : 300px; height : height:auto; border : 1px solid black; overflow:hidden;">
 			</div>
 		</div>
 
@@ -66,21 +73,21 @@
 
 		<!-- <input type="hidden" id="fb_content" onchange="valueChange()">  -->
 		
-		<input type="hidden" id="fb_content" name="fb_content" >
+		<input type="hidden" id="info_content" name="info_content" >
 		<input type="hidden" id="user_id" name="user_id" >
 		
 
 
 		<div class="inputArea">
-			<label for="fb_photo">이미지</label> 
-			<input type="file" id="fb_photo"
+			<label for="info_photo">이미지</label> 
+			<input type="file" id="info_photo"
 				name="file" />
 			<!-- <div class="select_img"><img src="" /></div> -->
 		</div>
 
 
 		<script>
-			$("#fb_photo").change(
+			$("#info_photo").change(
 					function() {
 						if (this.files && this.files[0]) {
 							var reader = new FileReader;
@@ -106,7 +113,7 @@
 		<div class="inputArea">
 			<button type="button" id="register_Btn" class="btn btn-primary">등록</button>
 			
-			<button type="button" class="btn btn-primary" onclick="location.href='../freeboard' ">취소</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='../../main' ">취소</button>
 		</div>
 
 	</form>
@@ -123,11 +130,9 @@
 			/* String id = request.getParameter("user_id"); */
 			
 			var abc = $('#content').html();
-			alert(abc);
 			
-			document.getElementById('fb_content').setAttribute('value', abc);
-			var a = document.getElementById('fb_content').value;
-			alert(a);
+			document.getElementById('info_content').setAttribute('value', abc);
+			var a = document.getElementById('info_content').value;
 			document.fbform.submit();
 		});
 			
@@ -141,7 +146,7 @@
     
     <!-- Start of footer -->
     
-	<%@include file="../../nav/footer.jsp"%>
+	<%@include file="../nav/footer.jsp"%>
   	
   	<!-- End of footer --> 
   <!-- .site-wrap -->

@@ -7,7 +7,10 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+	
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i"
 	rel="stylesheet">
@@ -48,19 +51,19 @@
 <!-- End of Topbar -->
 
 <!-- Start of main -->
-    <!-- End of Topbar -->
-  	<!-- Start of main -->
-  	<section style="padding-top: 100px;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7 align-self-center text-center text-md-left">
-            <div class="intro-text">
-				<font size=5px>자유게시판</font>   	
-    		</div>
-      	  </div>
-     	</div>
-      </div>
-    </section>
+<!-- End of Topbar -->
+<!-- Start of main -->
+<section style="padding-top: 100px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 align-self-center text-center text-md-left">
+				<div class="intro-text">
+					<font size=5px>자유게시판</font>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <section id="container">
 	<form action='<c:url value='/story/detailStoryWriter'/>' method="post">
@@ -76,45 +79,56 @@
 			class="form-control" id="fb_title" name="title"
 			value="${read.fb_title }" readonly>
 	</div>
-	<div class="form-group" ">
-		<label for="fb_content">내용</label> 
-		<span class="form-control" id="fb_content" name="contents" style=" display : table; height : 300px; border : 1px solid black;"> 
-			${read.fb_content }
-		</span>
-		
-		<div class="inputArea">
-			<button type="button" class="btn btn-primary" onclick="location.href='freeboard' ">돌아가기</button>
-		</div>
-		
-		
-		<%-- <input type="text"
-			class="form-control" id="fb_content" name="contents"
-			value="${read.fb_content }" readonly> --%>
-			<!-- 
-			
-	</div>
-	<button id="modify_btn">수정하기</button>
-	<button id="modify_btn">삭제하기</button>
-	<button id="modify_btn">추천</button>
+	<div class="form-group"">
+		<label for="fb_content">내용</label> <span class="form-control"
+			id="fb_content" name="contents"
+			style="display: table; min-height: 300px; height: height:auto; border: 1px solid black; overflow: hidden;">
+			${read.fb_content } </span>
 
+		<div class="inputArea">
+			<button type="button" class="btn btn-primary"
+				onclick="location.href='freeboard' ">돌아가기</button>
+		</div>
+
+	</div>
+
+	<input type="hidden" name="your_id"
+		value="${sessionScope.user.user_id}"> <input type="hidden"
+		name="writer" value="${read.user_id}">
+	<c:if test="${read.user_id == sessionScope.user.user_id}">
+		<button id="delete_btn">삭제하기</button>
+		<button id="recommend_btn">추천하기</button>
+	</c:if>
 
 	<script>
-		// 폼을 변수에 저장
-		var formOjb = $("form[role='form']");
-		// 수정 버튼 클릭
-		$("#modity_btn").click(function() {
-			formOjb.attr("action", "http://localhost:8080/doggle/story/modify");
-			formOjb.attr("method", "get");
-			formObj.submit();
-		});
-		// 삭제 버튼 클릭
-		$("delete_btn").click(function() {
-			formOjb.attr("aciton", "/detailStoryView/delete.jsp");
-			formOjb.attr("method", "get");
-			formOjb.submit();
-		});
+		var p_no = $('input[name=p_no]').val();
+		$('#delete_btn').click(
+				function() {
+					var result = confirm('삭제하시겠습니까? 삭제하시면 복구할 수 없습니다.');
+					if (result) {
+						$.ajax({
+							url : "delete", // 전송 URL
+							type : 'DELETE', // GET or POST 방식
+							traditional : true,
+							data : {
+								p_no : p_no
+							// 보내고자 하는 data 변수 설정
+							},
+							//Ajax 성공시 호출 
+							success : function(msg) {
+								alert(msg);
+								window.location.href = "freeboard";
+							},
+							//Ajax 실패시 호출
+							error : function(jqXHR, textStatus, errorThrown) {
+								console.log("jqXHR : " + jqXHR
+										+ "textStatus : " + textStatus
+										+ "errorThrown : " + errorThrown);
+							}
+						});
+					}
+				});
 	</script>
- -->
 </section>
 
 <!-- End of main -->

@@ -43,19 +43,17 @@
 
 <!-- Start of Topbar -->
 
-<%@include file="../../nav/topbar.jsp"%>
+<%@include file="../nav/topbar.jsp"%>
 
 <!-- End of Topbar -->
 
 <!-- Start of main -->
-    <!-- End of Topbar -->
-  	<!-- Start of main -->
   	<section style="padding-top: 100px;">
       <div class="container">
         <div class="row">
           <div class="col-md-7 align-self-center text-center text-md-left">
             <div class="intro-text">
-				<font size=5px>자유게시판</font>   	
+				<font size=10px> info 등록 </font>   	
     		</div>
       	  </div>
      	</div>
@@ -63,65 +61,53 @@
     </section>
 
 <section id="container">
-	<form action='<c:url value='/story/detailStoryWriter'/>' method="post">
+	<form action='<c:url value='/story/detailInfoWriter'/>' method="post">
 		<div class="form-group">
 			<label for="p_no">게시글 번호</label> <input type="text"
-				class="form-control" id="p_no" name="p_no" value="${read.p_no }"
-				readonly>
+				class="form-control" id="p_no" name="p_no"
+				value="${read.p_no }" readonly>
 		</div>
-
-	</form>
-	<div class="form-group">
-		<label for="fb_title">제목</label> <input type="text"
-			class="form-control" id="fb_title" name="title"
-			value="${read.fb_title }" readonly>
-	</div>
-	<div class="form-group" ">
-		<label for="fb_content">내용</label> 
-		<span class="form-control" id="fb_content" name="contents" style=" display : table; height : 300px; border : 1px solid black;"> 
-			${read.fb_content }
-		</span>
 		
+		</form>
+		<div class="form-group">
+			<label for="info_title">제목</label> <input type="text"
+				class="form-control" id="info_title" name="title"
+				value="${read.info_title }" readonly>
+		</div>
+		<div class="form-group">
+			<label for="info_content">내용</label> 
+			<span class="form-control" id="info_content" name="contents" style="display: table; min-height: 300px; height: height:auto; border: 1px solid black; overflow: hidden;"> 
+			${read.info_content }
+			</span>
+			<%-- <input type="text"
+				class="form-control" id="fb_content" name="contents"
+				value="${read.fb_content }" readonly> --%>
+		</div>
 		<div class="inputArea">
-			<button type="button" class="btn btn-primary" onclick="location.href='freeboard' ">돌아가기</button>
+			<button type="button" class="btn btn-primary"
+				onclick="location.href='../main' ">돌아가기</button>
 		</div>
 		
-		
-		<%-- <input type="text"
-			class="form-control" id="fb_content" name="contents"
-			value="${read.fb_content }" readonly> --%>
-			<!-- 
-			
-	</div>
-	<button id="modify_btn">수정하기</button>
-	<button id="modify_btn">삭제하기</button>
-	<button id="modify_btn">추천</button>
-
-
-	<script>
+		<button id="modify_btn">수정하기</button><button id="cancel_btn">취소</button>
+		<script>
 		// 폼을 변수에 저장
-		var formOjb = $("form[role='form']");
-		// 수정 버튼 클릭
-		$("#modity_btn").click(function() {
-			formOjb.attr("action", "http://localhost:8080/doggle/story/modify");
-			formOjb.attr("method", "get");
-			formObj.submit();
-		});
-		// 삭제 버튼 클릭
-		$("delete_btn").click(function() {
-			formOjb.attr("aciton", "/detailStoryView/delete.jsp");
-			formOjb.attr("method", "get");
-			formOjb.submit();
-		});
-	</script>
- -->
+		var formObj = $("form[role='form']";)
+		
+		// 취소 버튼 클릭
+		$("#cancel_btn").click(function()){
+			formObj.attr("action", "/info/read?p_no=" +$("#p_no").val());
+			formObj.attr("method", "get");
+			fromObj.submit();
+			});
+		</script>
 </section>
+
 
 <!-- End of main -->
 
 <!-- Start of footer -->
 
-<%@include file="../../nav/footer.jsp"%>
+<%@include file="../nav/footer.jsp"%>
 
 <!-- End of footer -->
 <!-- .site-wrap -->

@@ -7,59 +7,37 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.doggle.dao.FreeboardDao;
-import com.doggle.vo.FreeboardVO;
+import com.doggle.dao.InfoboardDao;
+import com.doggle.vo.InfoboardVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class InfoboardServiceImpl implements FreeboardService {
+public class InfoboardServiceImpl implements InfoboardService {
 
 	@Inject
-	private FreeboardDao dao;
+	private InfoboardDao dao;
 
 	@Override
-	public void upload(FreeboardVO freeboardVO) throws Exception {
-		dao.upload(freeboardVO);
-	}
-
-	@Override
-	public void registClobData(FreeboardVO freeboardVO) throws Exception {
+	public void registClobData(InfoboardVO infoboardVO) throws Exception {
 
 		ObjectMapper om = new ObjectMapper();
-		HashMap<String, String> map = om.convertValue(freeboardVO, HashMap.class);
+		HashMap<String, String> map = om.convertValue(infoboardVO, HashMap.class);
 
 		dao.insertClobTable(map);
 
 	}
 
-	// 작성
-	@Override
-	public void write(FreeboardVO vo) throws Exception {
-		dao.write(vo);
-	}
 
 	// 조회
 	@Override
-	public FreeboardVO read(int p_no) throws Exception {
+	public InfoboardVO read(int p_no) throws Exception {
 		return dao.read(p_no);
-	}
-
-	// 수정
-	@Override
-	public void update(FreeboardVO vo) throws Exception {
-		dao.update(vo);
-	}
-
-	// 삭제
-	@Override
-	public void delete(int p_no) throws Exception {
-		dao.delete(p_no);
 	}
 
 	// 목록
 	@Override
-	public List<FreeboardVO> list() throws Exception {
-		return dao.list();
+	public List<InfoboardVO> list(int b_no) throws Exception {
+		return dao.list(b_no);
 	}
 
 }

@@ -59,7 +59,7 @@
 									<ul class="dropdown">
 										<li><a href="http://localhost:8080/doggle/info/hospital" class="nav-link">병원</a></li>
 										<li><a href="http://localhost:8080/doggle/info/hotel" class="nav-link">호텔</a></li>
-										<li><a href="http://localhost:8080/doggle/info/outdoor" class="nav-link">애견 동반</a></li>
+										<li><a href="http://localhost:8080/doggle/info/walk" class="nav-link">애견 동반</a></li>
 										<li><a href="http://localhost:8080/doggle/info/petshop" class="nav-link">애견샵</a></li>
 									</ul></li>
 
