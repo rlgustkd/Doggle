@@ -64,4 +64,19 @@ public class FreeboardDaoImpl implements FreeboardDao {
 	public void insertClobTable(Map<String, String> reqMap) {
 		sql.insert("freeboardMapper.insertClobTable", reqMap);
 	}
+
+	@Override
+	public void updateRecommend(FreeboardVO fvo) throws Exception {
+		sql.update("freeboardMapper.updateRecommend", fvo);
+	}
+
+	@Override
+	public void increaseViewCount(int p_no) throws Exception {
+		sql.update("freeboardMapper.increaseViewCount", p_no);
+	}
+
+	@Override
+	public void updateReport(FreeboardVO fvo) throws Exception {
+		sql.update("freeboardMapper.updateReport", fvo);
+	}
 }

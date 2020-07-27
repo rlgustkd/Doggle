@@ -24,4 +24,14 @@ public interface FreeboardService {
 
 	// 목록
 	public List<FreeboardVO> list() throws Exception;
+
+	// 추천
+	public void updateRecommend(FreeboardVO fvo) throws Exception;
+
+	// 조회수 증가
+	public void increaseViewCount(int p_no) throws Exception;
+
+	// 신고 
+	public void updateReport(FreeboardVO fvo) throws Exception;
+	
 }
