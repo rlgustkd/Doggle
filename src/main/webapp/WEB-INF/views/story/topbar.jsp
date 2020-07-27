@@ -76,7 +76,7 @@
 									<li class="has-children"><a class="nav-link">My Page</a>
 										<ul class="dropdown">
 											<li><a href="../../user/mypage" class="nav-link">마이페이지</a></li>
-											<li><a href="../../user/logout" class="nav-link">Logout</a></li>
+											<li><a href="../user/logout" class="nav-link">Logout</a></li>
 										</ul></li>
 								</c:if>
 								<c:if test="${user == null}">

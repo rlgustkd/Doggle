@@ -80,9 +80,8 @@
 			value="${read.fb_title }" readonly>
 	</div>
 	<div class="form-group"">
-		<label for="fb_content">내용</label> <span class="form-control"
-			id="fb_content" name="contents"
-			style="display: table; min-height: 300px; height: height:auto; border: 1px solid black; overflow: hidden;">
+		<label for="fb_content">내용</label> 
+		<span class="form-control" id="fb_content" name="contents" style="display: table; min-height: 300px; height: height:auto; border: 1px solid black; overflow: hidden;">
 			${read.fb_content } </span>
 
 		<div class="inputArea">
@@ -100,10 +99,10 @@
 		<button id="report_btn">신고하기</button>
 		<c:if test="${read.user_id == sessionScope.user.user_id}">
 		<button id="delete_btn">삭제하기</button>
+		
 	</c:if>
-		<button id="recommend_btn">추천하기</button>
 	</c:if>
-
+	<script>
 	/*
 	$(document).ready( function() {
 		var user_id = $('input[name=your_id]').val();
@@ -114,11 +113,7 @@
 		}
 	}
 	*/
-	<script>
 		var p_no = $('input[name=p_no]').val();
-
-	
-		
 		
 		$('#recommend_btn').click(function() {
 			var user_id = $('input[name=your_id]').val();
