@@ -12,6 +12,7 @@
 <title>글 등록</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/icomoon/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
@@ -52,7 +53,7 @@
 		method="post" autocomplete="off" enctype="multipart/form-data"
 		name="fbform">
 		
-		<input type="hidden" name="b_no" value=${b_no} >
+		<input type="hidden" name="b_no" id="b_no" value=${b_no} >
 		
 								
 		<div class="inputArea">
@@ -113,11 +114,36 @@
 		<div class="inputArea">
 			<button type="button" id="register_Btn" class="btn btn-primary">등록</button>
 			
-			<button type="button" class="btn btn-primary" onclick="location.href='../../main' ">취소</button>
+			<button type="button" class="btn btn-primary" id="cancle_btn">취소</button>
 		</div>
 
 	</form>
 	<script type="text/javascript">
+
+	//취소버튼 클릭
+    $('#cancle_btn').click(function() {
+       var b_no = $('#b_no').val();
+       if(b_no == 4){
+          window.location.href = "hotel";
+       }
+       else if(b_no == 6) {
+          window.location.href = "hospital";
+          }
+       else if(b_no == 8) {
+          window.location.href = "petshop";
+          }
+       else if(b_no == 10) {
+          window.location.href = "walk";
+          }
+    });
+	
+
+
+	
+
+
+
+	
 		/* 		function Change() {
 		
 		 $('#fb_content').val('change!!!!!');
@@ -151,7 +177,7 @@
   	<!-- End of footer --> 
   <!-- .site-wrap -->
 
-  <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+  
   <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>

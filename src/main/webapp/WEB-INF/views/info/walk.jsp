@@ -71,9 +71,9 @@
 							<section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
 								<div class="container">
 									<div class="row justify-content-center" data-aos="fade-up"></div>
-									<form action="walksaveImage" enctype="multipart/form-data" method="post">
+									<!-- <form action="walksaveImage" enctype="multipart/form-data" method="post">
 										<input multiple="multiple" type="file" name="file" onchange="fileCheck(this)" accept="image/gif, image/jpeg, image/png" /> <input type="submit" value="이미지저장" />
-									</form>
+									</form> -->
 									<div>
 										<div id="image_container"></div>
 									</div>

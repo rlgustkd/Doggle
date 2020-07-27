@@ -26,7 +26,7 @@
 	
 <%@include file="../topbar.jsp"%>
     
-    <!-- End of Topbar -->
+    <!-- End of Topbar --> 
   	<!-- Start of main -->
   	<section style="padding-top: 100px;">
       <div class="container">

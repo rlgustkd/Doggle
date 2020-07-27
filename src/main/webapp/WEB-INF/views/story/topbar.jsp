@@ -42,7 +42,7 @@
 
 					<div class="col-6 col-xl-2">
 						<h1 class="mb-0 site-logo">
-							<a href="../../main" class="h2 mb-0"><img
+							<a href="../main" class="h2 mb-0"><img
 								src="${pageContext.request.contextPath}/resources/images/logo.png"
 								style="width: 200px; height: 80px; margin-top: 20px;"></a>
 						</h1>
@@ -75,7 +75,7 @@
 								<c:if test="${user != null}">
 									<li class="has-children"><a class="nav-link">My Page</a>
 										<ul class="dropdown">
-											<li><a href="../../user/mypage" class="nav-link">마이페이지</a></li>
+											<li><a href="../user/mypage" class="nav-link">마이페이지</a></li>
 											<li><a href="../user/logout" class="nav-link">Logout</a></li>
 										</ul></li>
 								</c:if>

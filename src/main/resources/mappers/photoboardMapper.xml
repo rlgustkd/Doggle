@@ -7,8 +7,8 @@
 
 <!-- 이미지 출력 -->
 <select id="loadPosts" resultType="com.doggle.vo.PhotoboardVO">
-    SELECT photoboard.b_no, photoboard.p_no, photoboard.user_id, photoboard.pb_title, photoboard.pb_content, photoboard.regdate, photoboard.pb_photo, photoboard.viewcnt, photoboard.recommend, photoboard.reportcnt, photoboard.use_flag, member.pic, member.nickname 
-    FROM photoboard, member where photoboard.user_id = member.user_id and photoboard.use_flag = 0 order by photoboard.p_no desc
+    <![CDATA[SELECT photoboard.b_no, photoboard.p_no, photoboard.user_id, photoboard.pb_title, photoboard.pb_content, photoboard.regdate, photoboard.pb_photo, photoboard.viewcnt, photoboard.recommend, photoboard.reportcnt, photoboard.use_flag, member.pic, member.nickname 
+    FROM photoboard, member where photoboard.user_id = member.user_id and photoboard.use_flag = 0 and photoboard.reportcnt <=10 order by photoboard.p_no desc]]>
 </select>
 <insert id="uploadPost">
 	INSERT INTO photoboard (p_no, user_id, pb_title, pb_content, pb_photo)

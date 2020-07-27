@@ -36,8 +36,8 @@
 	
 	<!-- 목록 출력 -->
 	<select id="list" resultType="com.doggle.vo.FreeboardVO">
-		SELECT B_NO, P_NO, USER_ID, FB_TITLE, FB_CONTENT, REGDATE,VIEWCNT,RECOMMEND,REPORTCNT,USE_FLAG
-		FROM FREEBOARD WHERE USE_FLAG = 0 order by p_no desc
+		<![CDATA[SELECT B_NO, P_NO, USER_ID, FB_TITLE, FB_CONTENT, REGDATE,VIEWCNT,RECOMMEND,REPORTCNT,USE_FLAG
+		FROM FREEBOARD WHERE USE_FLAG = 0 AND REPORTCNT<=10 order by p_no desc]]>
 	</select>
 	
 	<!-- 수정 -->

@@ -14,4 +14,7 @@ public interface InfoboardService {
 
 	// 목록
 	public List<InfoboardVO> list(int b_no) throws Exception;
+
+	// 삭제
+	public int delete(InfoboardVO infoboardVO) throws Exception;
 }

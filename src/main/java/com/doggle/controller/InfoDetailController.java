@@ -257,21 +257,9 @@ public class InfoDetailController {
 		return smsg;
 	}
 	
-	@RequestMapping(value = "/petshopdelete", method = RequestMethod.POST)
-	public @ResponseBody Object petshopdelete (Model model, HttpServletRequest req) throws Exception {
-		logger.info("petshopdelete");
-		logger.info(req.getParameter("r_num"));
-		String r_num = req.getParameter("r_num");
-		logger.info(r_num);
-		
-		int r_no = Integer.parseInt(req.getParameter("r_num"));
-		ReplyVO replyVO = new ReplyVO();
-		replyVO.setR_no(r_no);
-		
-		replyService.p_replydelete(replyVO);
-		
-		String smsg = "sucess";
-		
-		return smsg;
-	}
+
+	
+	
+	//기현이형 합 마지막
+	
 }

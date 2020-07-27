@@ -27,7 +27,6 @@ public class InfoboardServiceImpl implements InfoboardService {
 
 	}
 
-
 	// 조회
 	@Override
 	public InfoboardVO read(int p_no) throws Exception {
@@ -38,6 +37,12 @@ public class InfoboardServiceImpl implements InfoboardService {
 	@Override
 	public List<InfoboardVO> list(int b_no) throws Exception {
 		return dao.list(b_no);
+	}
+
+	@Override
+	public int delete(InfoboardVO infoboardVO) throws Exception {
+		dao.delete(infoboardVO);
+		return 0;
 	}
 
 }

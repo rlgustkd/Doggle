@@ -471,6 +471,24 @@ public class InfoController {
 
 	}
 	
-	
+	//글 삭제 DELETE
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/text; charset=utf8")
+    @ResponseBody
+    public String postDelete(HttpServletRequest request) throws Exception {
+       logger.info("post delete");
+       String resultMsg = "항목이 삭제 되었습니다.";
+       String pno = request.getParameter("p_no");
+       String bno = request.getParameter("b_no");
+       int p_no = Integer.parseInt(pno);
+       int b_no = Integer.parseInt(bno);
+       InfoboardVO infoboardVO = new InfoboardVO();
+       infoboardVO.setB_no(b_no);
+       infoboardVO.setP_no(p_no);
+       
+       infoboardService.delete(infoboardVO);
+
+       return resultMsg;
+    }
+
 
 }

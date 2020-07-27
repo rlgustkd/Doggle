@@ -21,4 +21,6 @@ public interface InfoboardDao {
 
 	// 추천하기 넣어야함.
 
+	//삭제
+	   public int delete(InfoboardVO infoboardVO) throws Exception;
 }

@@ -8,6 +8,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i"
 	rel="stylesheet">
@@ -65,7 +67,7 @@
 		<div class="form-group">
 			<label for="p_no">게시글 번호</label> <input type="text"
 				class="form-control" id="p_no" name="p_no"
-				value="${read.p_no }" readonly>
+				value="${read.p_no }" readonly><input type="hidden" id="b_no" value="${read.b_no }">
 		</div>
 		
 		</form>
@@ -83,22 +85,75 @@
 				class="form-control" id="fb_content" name="contents"
 				value="${read.fb_content }" readonly> --%>
 		</div>
+		
 		<div class="inputArea">
-			<button type="button" class="btn btn-primary"
-				onclick="location.href='../main' ">돌아가기</button>
-		</div>
-		
-		<button id="modify_btn">수정하기</button><button id="cancel_btn">취소</button>
+         <c:if test="${read.user_id == sessionScope.user.user_id}">
+         <button type="button" class="btn btn-primary" id="delete_btn">삭제</button>
+         </c:if>
+         <button type="button" class="btn btn-primary"
+            id="return_btn">돌아가기</button>
+      </div>
+
+
 		<script>
-		// 폼을 변수에 저장
-		var formObj = $("form[role='form']";)
-		
-		// 취소 버튼 클릭
-		$("#cancel_btn").click(function()){
-			formObj.attr("action", "/info/read?p_no=" +$("#p_no").val());
-			formObj.attr("method", "get");
-			fromObj.submit();
-			});
+
+		// 삭제 버튼 클릭
+	      $('#delete_btn').click(function() {
+	         var p_no = $('input[name=p_no]').val();
+	         var b_no = $('#b_no').val();
+	         var result = confirm('삭제하시겠습니까? 삭제하시면 복구할 수 없습니다.');
+	         if (result) {
+	            $.ajax({
+	               url : "delete", // 전송 URL
+	               type : 'DELETE', // GET or POST 방식
+	               traditional : true,
+	               data : {
+	                  p_no : p_no,
+	                  b_no : b_no
+	               // 보내고자 하는 data 변수 설정
+	               },
+	               //Ajax 성공시 호출 
+	               success : function(msg) {
+	                  alert(msg);
+	                  if(b_no == 4){
+	                     window.location.href = "hotel";
+	                  }
+	                  else if(b_no == 6) {
+	                     window.location.href = "hospital";
+	                     }
+	                  else if(b_no == 8) {
+	                     window.location.href = "petshop";
+	                     }
+	                  else if(b_no == 10) {
+	                     window.location.href = "walk";
+	                     }
+	                     
+	               },
+	               //Ajax 실패시 호출
+	               error : function(jqXHR, textStatus, errorThrown) {
+	                  console.log("jqXHR : " + jqXHR
+	                        + "textStatus : " + textStatus
+	                        + "errorThrown : " + errorThrown);
+	               }
+	            });
+	         }
+	         });
+	      //돌아가기버튼 클릭
+	      $('#return_btn').click(function() {
+	         var b_no = $('#b_no').val();
+	         if(b_no == 4){
+	            window.location.href = "hotel";
+	         }
+	         else if(b_no == 6) {
+	            window.location.href = "hospital";
+	            }
+	         else if(b_no == 8) {
+	            window.location.href = "petshop";
+	            }
+	         else if(b_no == 10) {
+	            window.location.href = "walk";
+	            }
+	      });
 		</script>
 </section>
 
