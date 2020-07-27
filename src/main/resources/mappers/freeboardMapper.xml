@@ -4,27 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeboardMapper">
 
-
 	<insert id="insertClobTable" parameterType="map">
 
-		INSERT INTO freeboard
-		( b_no,
-		p_no,
-		user_id,
-		fb_title,
-		regdate,
-		viewcnt,
-		recommend,
-		reportcnt,
-		use_flag,
-		fb_content)
-
-		VALUES (1,
-		d_p_no_seq.nextval,
-		#{user_id},
-		#{fb_title},
-		sysdate, 0, 0, 0, 0,
-		NVL(#{fb_content:VARCHAR}, EMPTY_CLOB()))
+		INSERT INTO freeboard (	b_no, 
+								p_no, 
+								user_id, 
+								fb_title,  
+								regdate,
+								viewcnt, 
+								recommend, 
+								reportcnt, 
+								use_flag,
+								fb_content) 
+								
+					VALUES (1, 
+							d_p_no_seq.nextval, 
+							#{user_id}, 
+							#{fb_title}, 
+							sysdate, 0, 0, 0, 0,
+							NVL(#{fb_content:VARCHAR}, EMPTY_CLOB()))
 
 	</insert>
 
@@ -33,17 +31,15 @@
 	<!-- 조회 -->
 	<select id="read" resultType="com.doggle.vo.FreeboardVO">
 		SELECT *
-		FROM FREEBOARD WHERE p_no =
-		#{p_no}
+		FROM FREEBOARD WHERE p_no = #{p_no}
 	</select>
-
+	
 	<!-- 목록 출력 -->
 	<select id="list" resultType="com.doggle.vo.FreeboardVO">
-		SELECT B_NO, P_NO, USER_ID,
-		FB_TITLE, FB_CONTENT, REGDATE,VIEWCNT,RECOMMEND,REPORTCNT,USE_FLAG
+		SELECT B_NO, P_NO, USER_ID, FB_TITLE, FB_CONTENT, REGDATE,VIEWCNT,RECOMMEND,REPORTCNT,USE_FLAG
 		FROM FREEBOARD WHERE USE_FLAG = 0 order by p_no desc
 	</select>
-
+	
 	<!-- 수정 -->
 	<update id="update">
 		update FREEBOARD set
@@ -51,48 +47,30 @@
 		FB_CONTENT = #{FB_CONTENT}
 		where p_no = #{p_no}
 	</update>
-
-	<!-- 삭제 -->
-	<update id="delete">
-		update FREEBOARD set
-		use_flag = 1
-		where p_no = #{p_no}
-	</update>
-	<update id="updateRecommend">
-		update FREEBOARD set
-		recommend = recommend + 1
-		where p_no = #{p_no}
-	</update>
-
-	<update id="increaseViewCount">
-		update FREEBOARD set
-		viewcnt = viewcnt + 1
-		where p_no = #{p_no}
-	</update>
-
-	<update id="updateReport">
-		update FREEBOARD set
-		reportcnt = reportcnt + 1
-		where p_no = #{p_no}
-	</update>
-
+	
+<!-- 삭제 -->
+   <update id="delete">
+   update FREEBOARD set
+   use_flag = 1
+   where p_no = #{p_no}
+   </update>
+	
 	<update id="updateRecommend">
 	update FREEBOARD set
 	recommend = recommend + 1
 	where p_no = #{p_no}
 	</update>
-
+	
 	<update id="increaseViewCount">
 	update FREEBOARD set
 	viewcnt = viewcnt + 1
 	where p_no = #{p_no}
 	</update>
-
+	
 	<update id="updateReport">
 	update FREEBOARD set
 	reportcnt = reportcnt + 1
 	where p_no = #{p_no}
 	</update>
-
-
+	
 </mapper>
