@@ -62,4 +62,19 @@ public class FreeboardServiceImpl implements FreeboardService {
 		return dao.list();
 	}
 
+	@Override
+	public void updateRecommend(FreeboardVO fvo) throws Exception {
+		dao.updateRecommend(fvo);
+	}
+
+	@Override
+	public void increaseViewCount(int p_no) throws Exception {
+		dao.increaseViewCount(p_no);
+	}
+
+	@Override
+	public void updateReport(FreeboardVO fvo) throws Exception {
+		dao.updateReport(fvo);
+	}
+
 }

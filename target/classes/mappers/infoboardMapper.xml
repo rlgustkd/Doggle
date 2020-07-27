@@ -18,7 +18,7 @@
 								info_content) 
 								
 					VALUES (#{b_no}, 
-							b_no_seq.nextval, 
+							d_p_no_seq.nextval, 
 							#{user_id}, 
 							#{info_title}, 
 							sysdate, 0, 0, 0, 0,

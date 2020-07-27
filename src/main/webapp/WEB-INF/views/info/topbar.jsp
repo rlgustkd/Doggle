@@ -55,7 +55,11 @@
                   </ul>
                 </li>
                 
-                <li><a href="../story/story" class="nav-link">Story</a></li>
+                <li class="has-children"><a class="nav-link">Story</a>
+									<ul class="dropdown">
+										<li><a href="../story/freeboard" class="nav-link">자유게시판</a></li>
+										<li><a href="../story/gallery" class="nav-link">사진게시판</a></li>
+									</ul></li>
                 
                   <c:set var="user" value="${user.user_id}"/>
                 <c:if test="${user != null}">

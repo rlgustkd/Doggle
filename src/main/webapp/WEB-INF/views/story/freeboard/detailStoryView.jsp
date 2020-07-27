@@ -92,16 +92,81 @@
 
 	</div>
 
-	<input type="hidden" name="your_id"
-		value="${sessionScope.user.user_id}"> <input type="hidden"
-		name="writer" value="${read.user_id}">
-	<c:if test="${read.user_id == sessionScope.user.user_id}">
-		<button id="delete_btn">삭제하기</button>
+	<input type="hidden" name="your_id" value="${sessionScope.user.user_id}"> 
+	<input type="hidden" name="writer" value="${read.user_id}">
+	
+		<c:if test="${sessionScope.user.user_id != null }"> 
 		<button id="recommend_btn">추천하기</button>
+		<button id="report_btn">신고하기</button>
+		<c:if test="${read.user_id == sessionScope.user.user_id}">
+		<button id="delete_btn">삭제하기</button>
+		
 	</c:if>
-
+	</c:if>
 	<script>
+	/*
+	$(document).ready( function() {
+		var user_id = $('input[name=your_id]').val();
+		var writer = $('input[name=writer]').val();
+
+		if(user_id != writer) {
+			alert("조회!!!");
+			ajaxfunction(p_no, "", "view");
+		}
+	}
+	*/
 		var p_no = $('input[name=p_no]').val();
+		
+		
+		
+		$('#recommend_btn').click(function() {
+			var user_id = $('input[name=your_id]').val();
+			var writer = $('input[name=writer]').val();
+
+			if(user_id == writer) {
+				alert("스스로 추천할 수 없습니다.");
+			}
+			else {
+				ajaxfunction(p_no, user_id, "rec");
+			}
+		});
+
+		$('#report_btn').click(function() {
+			var user_id = $('input[name=your_id]').val();
+			var writer = $('input[name=writer]').val();
+
+			if(user_id == writer) {
+				alert("스스로 신고할 수 없습니다.");
+			}
+			else {
+				ajaxfunction(p_no, user_id, "rep");
+			}	
+		});
+
+		function ajaxfunction(p_no, user_id, flag) {
+			$.ajax({
+				url : "detailStoryView", // 전송 URL
+				type : 'PUT', // GET or POST 방식
+				traditional : true,
+				data : {
+					p_no : p_no,		// 보내고자 하는 data 변수 설정
+					user_id : user_id,
+					flag : flag
+				},
+				//Ajax 성공시 호출 
+				success : function(msg) {
+					if(msg != 0)
+						alert(msg);				
+				},
+				//Ajax 실패시 호출
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log("jqXHR : " + jqXHR
+							+ "textStatus : " + textStatus
+							+ "errorThrown : " + errorThrown);
+				}
+			});	
+		}
+		
 		$('#delete_btn').click(
 				function() {
 					var result = confirm('삭제하시겠습니까? 삭제하시면 복구할 수 없습니다.');

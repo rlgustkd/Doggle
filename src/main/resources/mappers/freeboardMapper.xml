@@ -4,26 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeboardMapper">
 
-	<insert id="upload">
-		insert into freeboard (	b_no, 
-								p_no, 
-								user_id, 
-								fb_title, 
-								fb_content, 
-								regdate,
-								viewcnt, 
-								recommend, 
-								reportcnt, 
-								use_flag)
-		
-					values (1, 
-							b_no_seq.nextval, 
-							'abcd', 
-							#{fb_title}, 
-							#{fb_content}, 
-							sysdate, 0, 0, 0, 0)
-	</insert>
-
 	<insert id="insertClobTable" parameterType="map">
 
 		INSERT INTO freeboard (	b_no, 
@@ -74,5 +54,23 @@
    use_flag = 1
    where p_no = #{p_no}
    </update>
+	
+	<update id="updateRecommend">
+	update FREEBOARD set
+	recommend = recommend + 1
+	where p_no = #{p_no}
+	</update>
+	
+	<update id="increaseViewCount">
+	update FREEBOARD set
+	viewcnt = viewcnt + 1
+	where p_no = #{p_no}
+	</update>
+	
+	<update id="updateReport">
+	update FREEBOARD set
+	reportcnt = reportcnt + 1
+	where p_no = #{p_no}
+	</update>
 	
 </mapper>

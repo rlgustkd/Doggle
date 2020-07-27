@@ -27,6 +27,12 @@ public interface FreeboardDao {
 	// 목록
 	public List<FreeboardVO> list() throws Exception;
 
+	public void updateRecommend(FreeboardVO fvo) throws Exception;
+
+	public void increaseViewCount(int p_no) throws Exception;
+
+	public void updateReport(FreeboardVO fvo) throws Exception;
+
 
 	// 추천하기 넣어야함.
 

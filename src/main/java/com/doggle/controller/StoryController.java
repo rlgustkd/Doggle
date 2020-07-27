@@ -84,6 +84,8 @@ public class StoryController {
 			logger.info("get read");
 			
 			FreeboardVO vo = freeboardService.read(p_no);
+			freeboardService.increaseViewCount(p_no);			
+
 			model.addAttribute("read", vo);
 			
 			return "story/freeboard/detailStoryView";
@@ -158,6 +160,62 @@ public class StoryController {
 		
 		return "redirect:/story/freeboard";
 
+	}
+	
+	@RequestMapping(value = "/detailStoryView", method = RequestMethod.PUT, produces = "application/text; charset=utf8")
+	public @ResponseBody Object fbput(Model model, HttpServletRequest request) throws Exception {
+		logger.info("dsvPUT");
+		
+		String pno = request.getParameter("p_no");
+		String user_id = request.getParameter("user_id");
+		int p_no = Integer.parseInt(pno);			
+		int b_no = 1;
+		String flag = request.getParameter("flag");
+		
+		if(flag.equals("rec")) {
+			RecommendboardVO rvo = new RecommendboardVO();
+			rvo.setB_no(b_no);
+			rvo.setUser_id(user_id);
+			rvo.setP_no(p_no);
+			rvo.setUse_flag(0);
+			int check = recommendboardservice.checkRec(rvo);
+			
+			if(check != 0) {
+				String msg = "추천은 한 번만 할 수 있습니다.";
+				return msg;
+			} else {
+				recommendboardservice.addRec(rvo);
+				FreeboardVO fvo = new FreeboardVO();
+				fvo.setP_no(p_no);				
+				freeboardService.updateRecommend(fvo);
+				String msg = "추천하셨습니다!";
+				return msg;
+			}
+		}
+		//else if (flag.equals("view")) {
+		//	freeboardService.increaseViewCount(p_no);			
+		//	return 0;
+		//}
+		else {
+			ReportboardVO rvo = new ReportboardVO();
+			rvo.setB_no(b_no);
+			rvo.setUser_id(user_id);
+			rvo.setP_no(p_no);
+			rvo.setUse_flag(0);
+			int check = reportboardservice.checkRep(rvo);
+			
+			if(check != 0) {
+				String msg = "신고는 한 번만 할 수 있습니다.";
+				return msg;
+			} else {
+				reportboardservice.addRep(rvo);
+				FreeboardVO fvo = new FreeboardVO();
+				fvo.setP_no(p_no);
+				freeboardService.updateReport(fvo);
+				String msg = "신고가 접수되었습니다!";
+				return msg;
+			}
+		}
 	}
 	
 	
@@ -259,7 +317,7 @@ public class StoryController {
 		pvo.setP_no(p_no);
 		photoboardservice.deletePost(pvo);
 		
-		logger.info("성공@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		logger.info("성공");
 		return resultMsg;
 	}
 	
