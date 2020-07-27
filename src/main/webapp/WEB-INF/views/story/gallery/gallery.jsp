@@ -62,7 +62,7 @@
 <body>
 	<!-- Start of Topbar -->
 
-<%@include file="../../nav/topbar.jsp"%>
+<%@include file="../topbar.jsp"%>
 
 	<!-- End of Topbar -->
 
